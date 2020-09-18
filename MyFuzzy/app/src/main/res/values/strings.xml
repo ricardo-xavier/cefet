@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">MyFuzzy</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Strings used for fragments for navigation -->
+    <string name="problemas_label">Problemas</string>
+    <string name="variaveis_label">Variáveis linguísticas</string>
+    <string name="valores_label">Valores linguísticos</string>
+
+    <string name="problemas">Problemas</string>
+    <string name="problema">Problema: $problema</string>
+    <string name="variaveis">Variáveis linguísticas</string>
+    <string name="regras">Regras</string>
+    <string name="simulador">Simulador</string>
+    <string name="valores">Valores linguísticos</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>

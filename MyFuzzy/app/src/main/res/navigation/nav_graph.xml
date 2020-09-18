@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/ProblemasFragment">
+
+    <fragment
+        android:id="@+id/ProblemasFragment"
+        android:name="xavier.ricardo.myfuzzy.ProblemasFragment"
+        android:label="@string/problemas_label"
+        tools:layout="@layout/fragment_problemas">
+
+        <action
+            android:id="@+id/ProblemasParaProblema"
+            app:destination="@id/ProblemaFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ProblemaFragment"
+        android:name="xavier.ricardo.myfuzzy.ProblemaFragment"
+        android:label="@string/problemas_label"
+        tools:layout="@layout/fragment_problemas">
+
+        <action
+            android:id="@+id/ProblemaParaVariaveis"
+            app:destination="@id/VariaveisFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/VariaveisFragment"
+        android:name="xavier.ricardo.myfuzzy.VariaveisFragment"
+        android:label="@string/valores_label"
+        tools:layout="@layout/fragment_variaveis">
+
+        <action
+            android:id="@+id/VariaveisParaValores"
+            app:destination="@id/ValoresFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/ValoresFragment"
+        android:name="xavier.ricardo.myfuzzy.ValoresFragment"
+        android:label="@string/valores_label"
+        tools:layout="@layout/fragment_valores">
+
+        <action
+            android:id="@+id/ValoresParaProblemas"
+            app:destination="@id/ProblemasFragment" />
+    </fragment>
+
+</navigation>

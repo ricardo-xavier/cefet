@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProblemasFragment">
+
+    <TextView
+        android:id="@+id/tvProblema"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/problema"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnVariaveis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/variaveis"
+        app:layout_constraintTop_toBottomOf="@+id/tvProblema"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegras"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/btnRegras"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/regras"
+        app:layout_constraintBottom_toTopOf="@+id/btnSimulador"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnVariaveis" />
+
+    <Button
+        android:id="@+id/btnSimulador"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/simulador"
+        app:layout_constraintTop_toBottomOf="@+id/btnRegras"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
