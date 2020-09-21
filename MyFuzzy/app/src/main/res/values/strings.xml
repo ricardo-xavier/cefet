@@ -6,7 +6,7 @@
     <string name="problemas_label">Problemas</string>
     <string name="problema_label">Problema</string>
     <string name="variaveis_label">Variáveis linguísticas</string>
-    <string name="valores_label">Valores linguísticos</string>
+    <string name="valores_label">Termos linguísticos</string>
     <string name="grafico_variavel_label">Gráfico</string>
 
     <string name="problemas">Problemas</string>
@@ -14,6 +14,6 @@
     <string name="variaveis">Variáveis linguísticas</string>
     <string name="regras">Regras</string>
     <string name="simulador">Simulador</string>
-    <string name="valores">Valores linguísticos</string>
+    <string name="valores">Termos linguísticos</string>
     <string name="grafico">Gráfico</string>
 </resources>

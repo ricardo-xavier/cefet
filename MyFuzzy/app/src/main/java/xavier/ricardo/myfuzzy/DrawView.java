@@ -33,11 +33,11 @@ public class DrawView extends View {
 
     }
 
-    private int _x(int x) {
-        return x + xMargin;
+    private int _x(float x) {
+        return (int) x + xMargin;
     }
-    private int _y(int y) {
-        return height - y - yMargin;
+    private int _y(float y) {
+        return height - (int) y - yMargin;
     }
 
     @Override
@@ -52,38 +52,47 @@ public class DrawView extends View {
         paint.setStrokeWidth(1);
 
         // eixo Y
-        int y1 = 0;
-        int y2 = height - yMargin * 2;
-        int x1 = 0;
-        int x2 = 0;
+        float y1 = 0f;
+        float y2 = height - yMargin * 2;
+        float x1 = 0f;
+        float x2 = 0f;
         canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
 
         // marcadores do eixo Y
-        int dy = ( y2 - y1 ) / 10;
-        int y = dy;
-        int x = 0;
+        paint.setTextSize(20);
+        float dy = ( y2 - y1 ) / 10f;
+        float y = dy;
+        float x = 0f;
+        float v = 0.1f;
         for (int i=0; i<10; i++) {
             canvas.drawLine(_x(x-10), _y(y), _x(x+10), _y(y), paint);
+            canvas.drawText(String.format("%.1f", v), 30, _y(y), paint);
             y += dy;
+            v += 0.1f;
         }
 
         // eixo X
-        y1 = 0;
-        y2 = 0;
-        x1 = 0;
+        y1 = 0f;
+        y2 = 0f;
+        x1 = 0f;
         x2 = width - xMargin * 2;
         canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
 
         // marcadores do eixo X
-        int dx = ( x2 - x1 ) / 10;
-        y = 0;
-        x = dx;
-        for (int i=0; i<10; i++) {
+        float dx = ( x2 - x1 ) / 10f;
+        y = 0f;
+        x = 0f;
+        v = variavel.getInicio();
+        float dv = (variavel.getFim() - variavel.getInicio()) / 10f;
+        for (int i=0; i<=10; i++) {
             canvas.drawLine(_x(x), _y(y-10), _x(x), _y(y+10), paint);
+            canvas.drawText(String.format("%02.0f", v), _x(x-10), _y(y-40), paint);
             x += dx;
+            v += dv;
         }
 
-        int[] colors = { Color.RED, Color.GREEN, Color.BLUE } ;
+        paint.setStrokeWidth(2);
+        int[] colors = { Color.RED, Color.rgb(0, 128, 0), Color.BLUE } ;
 
         int c = 0;
         for (Valor valor : variavel.getValores()) {
@@ -91,18 +100,18 @@ public class DrawView extends View {
             paint.setColor(colors[c++]);
 
             if (valor.getInicio() != valor.getMaximo()) {
-                y1 = 0;
+                y1 = 0f;
                 y2 = height - yMargin * 2;
-                x1 = valor.getInicio() * dx;
-                x2 = valor.getMaximo() * dx;
+                x1 = valor.getInicio() / dv * dx;
+                x2 = valor.getMaximo() / dv * dx;
                 canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
             }
 
             if (valor.getFim() != valor.getMaximo()) {
                 y1 = height - yMargin * 2;
-                y2 = 0;
-                x1 = valor.getMaximo() * dx;
-                x2 = valor.getFim() * dx;
+                y2 = 0f;
+                x1 = valor.getMaximo() / dv * dx;
+                x2 = valor.getFim() / dv * dx;
                 canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
             }
 
