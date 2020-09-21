@@ -22,6 +22,18 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvValores" />
+        app:layout_constraintBottom_toTopOf="@id/btnGrafico"
+        app:layout_constraintTop_toBottomOf="@id/tvValores" >
+
+    </ListView>
+
+    <Button
+        android:id="@+id/btnGrafico"
+        android:text="@string/grafico"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lvValores" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

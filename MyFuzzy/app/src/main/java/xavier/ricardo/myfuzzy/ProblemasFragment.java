@@ -15,6 +15,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import xavier.ricardo.myfuzzy.tipos.Problema;
+
 public class ProblemasFragment extends Fragment {
 
     @Override
@@ -27,14 +29,14 @@ public class ProblemasFragment extends Fragment {
     }
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+
         super.onViewCreated(view, savedInstanceState);
 
+        Problema problema = Gorjeta.carrega();
+        List<String> problemas = new ArrayList<>();
+        problemas.add(problema.getNome());
+
         ListView lvProblemas = view.findViewById(R.id.lvProblemas);
-        if (lvProblemas == null) {
-            //TODO
-        }
-        List<String> problemas = new ArrayList<String>();
-        problemas.add("gorjeta");
         ArrayAdapter adapter = new ArrayAdapter<String>(getContext(),
                 android.R.layout.simple_list_item_1, problemas);
         lvProblemas.setAdapter(adapter);

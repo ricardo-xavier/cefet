@@ -1,9 +1,11 @@
 package xavier.ricardo.myfuzzy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -15,6 +17,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import xavier.ricardo.myfuzzy.tipos.Problema;
+import xavier.ricardo.myfuzzy.tipos.Valor;
+import xavier.ricardo.myfuzzy.tipos.Variavel;
 
 public class ValoresFragment extends Fragment {
 
@@ -29,68 +35,29 @@ public class ValoresFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
-        String variavel = getArguments().getString("variavel");
         super.onViewCreated(view, savedInstanceState);
 
-        ListView lvValores = view.findViewById(R.id.lvValores);
-        if (lvValores == null) {
-            //TODO
+        String nomeVariavel = getArguments().getString("variavel");
+        Problema problema = Gorjeta.carrega();
+        Variavel variavel = null;
+        for (Variavel v : problema.getVariaveis()) {
+            if (v.getNome().equals(nomeVariavel)) {
+                variavel = v;
+                break;
+            }
         }
+
+        ListView lvValores = view.findViewById(R.id.lvValores);
+        Button btnGrafico = view.findViewById(R.id.btnGrafico);
 
         List<Map<String, String>> valores = new ArrayList<>();
 
-        Map<String, String> colunas = new HashMap<>();
-
-        switch (variavel) {
-
-            case "comida":
-                colunas.put("valor", "pessima");
-                colunas.put("detalhes", "triangular: 0 0 5");
-                valores.add(colunas);
-
-                colunas = new HashMap<>();
-                colunas.put("valor", "comivel");
-                colunas.put("detalhes", "triangular: 0 5 10");
-                valores.add(colunas);
-
-                colunas = new HashMap<>();
-                colunas.put("valor", "deliciosa");
-                colunas.put("detalhes", "triangular: 5 10 10");
-                valores.add(colunas);
-                break;
-
-            case "servico":
-                colunas.put("valor", "ruim");
-                colunas.put("detalhes", "triangular: 0 0 5");
-                valores.add(colunas);
-
-                colunas = new HashMap<>();
-                colunas.put("valor", "aceitavel");
-                colunas.put("detalhes", "triangular: 0 5 10");
-                valores.add(colunas);
-
-                colunas = new HashMap<>();
-                colunas.put("valor", "excelente");
-                colunas.put("detalhes", "triangular: 5 10 10");
-                valores.add(colunas);
-                break;
-
-            case "gorjeta":
-                colunas.put("valor", "baixa");
-                colunas.put("detalhes", "triangular: 0 0 12");
-                valores.add(colunas);
-
-                colunas = new HashMap<>();
-                colunas.put("valor", "media");
-                colunas.put("detalhes", "triangular: 0 12 24");
-                valores.add(colunas);
-
-                colunas = new HashMap<>();
-                colunas.put("valor", "alta");
-                colunas.put("detalhes", "triangular: 12 24 24");
-                valores.add(colunas);
-                break;
-
+        for (Valor valor : variavel.getValores()) {
+            Map<String, String> colunas = new HashMap<>();
+            colunas.put("valor", valor.getNome());
+            colunas.put("detalhes", "triangular: " + valor.getInicio() + " "
+                    + valor.getMaximo() + " " + valor.getFim());
+            valores.add(colunas);
         }
 
         SimpleAdapter adapter = new SimpleAdapter(getContext(),
@@ -100,11 +67,14 @@ public class ValoresFragment extends Fragment {
                 new int[] { android.R.id.text1, android.R.id.text2 });
 
         lvValores.setAdapter(adapter);
-        lvValores.setOnItemClickListener((parent, v, position, id) -> {
-            Bundle bundle = new Bundle();
-            bundle.putString("valor", valores.get(position).get("valor"));
-            NavHostFragment.findNavController(ValoresFragment.this)
-                    .navigate(R.id.ValoresParaProblemas, bundle);
+
+        btnGrafico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), GraficoActivity.class);
+                intent.putExtra("variavel", nomeVariavel);
+                startActivity(intent);
+            }
         });
 
     }

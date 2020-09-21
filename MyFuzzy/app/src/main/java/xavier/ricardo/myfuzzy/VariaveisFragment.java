@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -16,6 +15,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import xavier.ricardo.myfuzzy.tipos.Problema;
+import xavier.ricardo.myfuzzy.tipos.Variavel;
 
 public class VariaveisFragment extends Fragment {
 
@@ -30,31 +32,19 @@ public class VariaveisFragment extends Fragment {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
-        String problema = getArguments().getString("problema");
         super.onViewCreated(view, savedInstanceState);
 
-        ListView lvVariaveis = view.findViewById(R.id.lvVariaveis);
-        if (lvVariaveis == null) {
-            //TODO
+        String nomeProblema = getArguments().getString("problema");
+        List<Map<String, String>> variaveis = new ArrayList<>();
+        Problema problema = Gorjeta.carrega();
+        for (Variavel variavel : problema.getVariaveis()) {
+            Map<String, String> colunas = new HashMap<>();
+            colunas.put("variavel", variavel.getNome());
+            colunas.put("detalhes", "universo: " + variavel.getInicio() + " - " + variavel.getFim());
+            variaveis.add(colunas);
         }
 
-        List<Map<String, String>> variaveis = new ArrayList<>();
-
-        Map<String, String> colunas = new HashMap<>();
-        colunas.put("variavel", "comida");
-        colunas.put("detalhes", "0 a 10 - 3 valores");
-        variaveis.add(colunas);
-
-        colunas = new HashMap<>();
-        colunas.put("variavel", "servico");
-        colunas.put("detalhes", "0 a 10 - 3 valores");
-        variaveis.add(colunas);
-
-        colunas = new HashMap<>();
-        colunas.put("variavel", "gorjeta");
-        colunas.put("detalhes", "0 a 24 - 3 valores");
-        variaveis.add(colunas);
-
+        ListView lvVariaveis = view.findViewById(R.id.lvVariaveis);
         SimpleAdapter adapter = new SimpleAdapter(getContext(),
                 variaveis,
                 android.R.layout.simple_list_item_2,

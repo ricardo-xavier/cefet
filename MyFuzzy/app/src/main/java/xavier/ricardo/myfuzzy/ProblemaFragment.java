@@ -4,17 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import java.util.ArrayList;
-import java.util.List;
+import xavier.ricardo.myfuzzy.tipos.Problema;
 
 public class ProblemaFragment extends Fragment {
 
@@ -30,18 +27,19 @@ public class ProblemaFragment extends Fragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
 
         super.onViewCreated(view, savedInstanceState);
-        String problema = getArguments().getString("problema");
         super.onViewCreated(view, savedInstanceState);
 
+        String nomeProblema = getArguments().getString("problema");
+
         TextView tvProblema = view.findViewById(R.id.tvProblema);
-        tvProblema.setText(tvProblema.getText().toString().replace("$problema", problema));
+        tvProblema.setText(tvProblema.getText().toString().replace("$problema", nomeProblema));
 
         Button btnVariaveis = view.findViewById(R.id.btnVariaveis);
         btnVariaveis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
-                bundle.putString("problema", problema);
+                bundle.putString("problema", nomeProblema);
                 NavHostFragment.findNavController(ProblemaFragment.this)
                         .navigate(R.id.ProblemaParaVariaveis, bundle);
             }

@@ -4,8 +4,10 @@
 
     <!-- Strings used for fragments for navigation -->
     <string name="problemas_label">Problemas</string>
+    <string name="problema_label">Problema</string>
     <string name="variaveis_label">Variáveis linguísticas</string>
     <string name="valores_label">Valores linguísticos</string>
+    <string name="grafico_variavel_label">Gráfico</string>
 
     <string name="problemas">Problemas</string>
     <string name="problema">Problema: $problema</string>
@@ -13,5 +15,5 @@
     <string name="regras">Regras</string>
     <string name="simulador">Simulador</string>
     <string name="valores">Valores linguísticos</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="grafico">Gráfico</string>
 </resources>

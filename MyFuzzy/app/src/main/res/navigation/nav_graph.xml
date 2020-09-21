@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/ProblemaFragment"
         android:name="xavier.ricardo.myfuzzy.ProblemaFragment"
-        android:label="@string/problemas_label"
+        android:label="@string/problema_label"
         tools:layout="@layout/fragment_problemas">
 
         <action
@@ -43,10 +43,6 @@
         android:name="xavier.ricardo.myfuzzy.ValoresFragment"
         android:label="@string/valores_label"
         tools:layout="@layout/fragment_valores">
-
-        <action
-            android:id="@+id/ValoresParaProblemas"
-            app:destination="@id/ProblemasFragment" />
     </fragment>
 
 </navigation>
