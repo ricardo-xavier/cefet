@@ -6,12 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +39,10 @@ public class ValoresFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         String nomeVariavel = getArguments().getString("variavel");
+
+        TextView tvVariavel = view.findViewById(R.id.tvVariavel);
+        tvVariavel.setText(tvVariavel.getText().toString().replace("$variavel", nomeVariavel));
+
         Problema problema = Gorjeta.carrega();
         Variavel variavel = null;
         for (Variavel v : problema.getVariaveis()) {
@@ -46,6 +51,12 @@ public class ValoresFragment extends Fragment {
                 break;
             }
         }
+
+        EditText edtInicio = view.findViewById(R.id.edtInicio);
+        edtInicio.setText(String.valueOf(variavel.getInicio()));
+
+        EditText edtFim = view.findViewById(R.id.edtFim);
+        edtFim.setText(String.valueOf(variavel.getFim()));
 
         ListView lvValores = view.findViewById(R.id.lvValores);
         Button btnGrafico = view.findViewById(R.id.btnGrafico);

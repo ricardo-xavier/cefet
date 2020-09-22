@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyFuzzy</string>
+    <string name="app_name">Simulador Fuzzy</string>
     <string name="action_settings">Settings</string>
 
     <!-- Strings used for fragments for navigation -->
@@ -7,13 +7,17 @@
     <string name="problema_label">Problema</string>
     <string name="variaveis_label">Variáveis linguísticas</string>
     <string name="valores_label">Termos linguísticos</string>
+    <string name="regras_label">Regras</string>
     <string name="grafico_variavel_label">Gráfico</string>
 
     <string name="problemas">Problemas</string>
     <string name="problema">Problema: $problema</string>
+    <string name="variavel">Variável: $variavel</string>
     <string name="variaveis">Variáveis linguísticas</string>
     <string name="regras">Regras</string>
     <string name="simulador">Simulador</string>
     <string name="valores">Termos linguísticos</string>
     <string name="grafico">Gráfico</string>
+    <string name="universo">Universo:</string>
+    <string name="desculpe">Desculpe. Opção não implementada. Aguarde as próximas versões.</string>
 </resources>

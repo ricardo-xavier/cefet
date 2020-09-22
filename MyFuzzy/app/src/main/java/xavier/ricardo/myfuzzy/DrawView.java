@@ -29,7 +29,7 @@ public class DrawView extends View {
 
         width = MeasureSpec.getSize(widthMeasureSpec);
         height = width; // MeasureSpec.getSize(heightMeasureSpec);
-        setMeasuredDimension(width, height);
+        setMeasuredDimension(width, MeasureSpec.getSize(heightMeasureSpec));
 
     }
 
@@ -114,6 +114,12 @@ public class DrawView extends View {
                 x2 = valor.getFim() / dv * dx;
                 canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
             }
+
+            canvas.drawLine(_x(0), height + 50 * (c + 1), _x(100), height + 50 * (c + 1), paint);
+
+            paint.setColor(Color.BLACK);
+            paint.setTextSize(30);
+            canvas.drawText(valor.getNome(), _x(150), height + 50 * (c + 1) + 10, paint);
 
         }
     }

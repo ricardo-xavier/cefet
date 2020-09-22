@@ -6,10 +6,12 @@ public class Problema {
 
     private String nome;
     private List<Variavel> variaveis;
+    private List<Regra> regras;
 
-    public Problema(String nome, List<Variavel> variaveis) {
+    public Problema(String nome, List<Variavel> variaveis, List<Regra> regras) {
         this.nome = nome;
         this.variaveis = variaveis;
+        this.regras = regras;
     }
 
     public String getNome() {
@@ -28,6 +30,11 @@ public class Problema {
         this.variaveis = variaveis;
     }
 
+    public List<Regra> getRegras() {
+        return regras;
+    }
 
-
+    public void setRegras(List<Regra> regras) {
+        this.regras = regras;
+    }
 }

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".GraficoActivity">
 
-
     <view
         android:id="@+id/vwGrafico"
         android:layout_width="wrap_content"

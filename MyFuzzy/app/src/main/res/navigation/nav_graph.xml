@@ -25,6 +25,10 @@
         <action
             android:id="@+id/ProblemaParaVariaveis"
             app:destination="@id/VariaveisFragment" />
+
+        <action
+            android:id="@+id/ProblemaParaRegras"
+            app:destination="@id/RegrasFragment" />
     </fragment>
 
     <fragment
@@ -36,6 +40,13 @@
         <action
             android:id="@+id/VariaveisParaValores"
             app:destination="@id/ValoresFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/RegrasFragment"
+        android:name="xavier.ricardo.myfuzzy.RegrasFragment"
+        android:label="@string/regras_label"
+        tools:layout="@layout/fragment_regras">
     </fragment>
 
     <fragment
