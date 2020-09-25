@@ -4,21 +4,24 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import xavier.ricardo.myfuzzy.exemplos.Gorjeta;
 import xavier.ricardo.myfuzzy.tipos.AntecedenteConsequente;
 import xavier.ricardo.myfuzzy.tipos.Operador;
 import xavier.ricardo.myfuzzy.tipos.Problema;
 import xavier.ricardo.myfuzzy.tipos.Regra;
+import xavier.ricardo.myfuzzy.tipos.Variavel;
 
 public class RegrasFragment extends Fragment {
 
@@ -35,9 +38,11 @@ public class RegrasFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
+        List<Map<String, String>> regras = new ArrayList<>();
         Problema problema = Gorjeta.carrega();
-        List<String> regras = new ArrayList<>();
         for (Regra r : problema.getRegras()) {
+            Map<String, String> colunas = new HashMap<>();
+
             StringBuilder expr = new StringBuilder();
             for (int a=0; a<r.getAntecedentes().size(); a++) {
                 AntecedenteConsequente antecedente = r.getAntecedentes().get(a);
@@ -47,13 +52,20 @@ public class RegrasFragment extends Fragment {
                     expr.append(operador == Operador.OR ? " OU " : " E ");
                 }
             }
+            colunas.put("condicoes", expr.toString());
+
+            expr = new StringBuilder();
             expr.append(" ENTÃO " + r.getConsequente().getVariavel().getNome() + " é " + r.getConsequente().getValor().getNome());
-            regras.add(expr.toString());
+            colunas.put("resultado", expr.toString());
+            regras.add(colunas);
         }
 
         ListView lvRegras = view.findViewById(R.id.lvRegras);
-        ArrayAdapter adapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_list_item_1, regras);
+        SimpleAdapter adapter = new SimpleAdapter(getContext(),
+                regras,
+                android.R.layout.simple_list_item_2,
+                new String[] { "condicoes", "resultado" },
+                new int[] { android.R.id.text1, android.R.id.text2 });
         lvRegras.setAdapter(adapter);
     }
 }

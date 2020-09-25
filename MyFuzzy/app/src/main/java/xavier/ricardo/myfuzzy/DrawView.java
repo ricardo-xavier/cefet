@@ -9,7 +9,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
-import xavier.ricardo.myfuzzy.tipos.Valor;
+import xavier.ricardo.myfuzzy.tipos.Termo;
 import xavier.ricardo.myfuzzy.tipos.Variavel;
 
 public class DrawView extends View {
@@ -95,31 +95,35 @@ public class DrawView extends View {
         int[] colors = { Color.RED, Color.rgb(0, 128, 0), Color.BLUE } ;
 
         int c = 0;
-        for (Valor valor : variavel.getValores()) {
+        for (Termo termo : variavel.getTermos()) {
 
             paint.setColor(colors[c++]);
 
-            if (valor.getInicio() != valor.getMaximo()) {
-                y1 = 0f;
-                y2 = height - yMargin * 2;
-                x1 = valor.getInicio() / dv * dx;
-                x2 = valor.getMaximo() / dv * dx;
-                canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
-            }
+            if (termo.getD() == null) {
+                // triangular
 
-            if (valor.getFim() != valor.getMaximo()) {
-                y1 = height - yMargin * 2;
-                y2 = 0f;
-                x1 = valor.getMaximo() / dv * dx;
-                x2 = valor.getFim() / dv * dx;
-                canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
+                if (termo.getA() != termo.getB()) {
+                    y1 = 0f;
+                    y2 = height - yMargin * 2;
+                    x1 = termo.getA() / dv * dx;
+                    x2 = termo.getB() / dv * dx;
+                    canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
+                }
+
+                if (termo.getB() != termo.getC()) {
+                    y1 = height - yMargin * 2;
+                    y2 = 0f;
+                    x1 = termo.getB() / dv * dx;
+                    x2 = termo.getC() / dv * dx;
+                    canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
+                }
             }
 
             canvas.drawLine(_x(0), height + 50 * (c + 1), _x(100), height + 50 * (c + 1), paint);
 
             paint.setColor(Color.BLACK);
             paint.setTextSize(30);
-            canvas.drawText(valor.getNome(), _x(150), height + 50 * (c + 1) + 10, paint);
+            canvas.drawText(termo.getNome(), _x(150), height + 50 * (c + 1) + 10, paint);
 
         }
     }

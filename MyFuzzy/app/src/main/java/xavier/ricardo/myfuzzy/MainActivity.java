@@ -2,6 +2,9 @@ package xavier.ricardo.myfuzzy;
 
 import android.os.Bundle;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -30,6 +33,15 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        // ca-app-pub-3940256099942544/6300978111 teste
+        // ca-app-pub-0381609228541841/9233128121 soft
+        // ca-app-pub-0381609228541841~8494761522 desenvolvedor
+        MobileAds.initialize(this, "ca-app-pub-0381609228541841~8494761522");
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
     }
 
     @Override

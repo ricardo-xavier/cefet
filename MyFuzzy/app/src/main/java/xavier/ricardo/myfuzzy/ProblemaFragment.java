@@ -62,8 +62,10 @@ public class ProblemaFragment extends Fragment {
         btnSimulador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, getResources().getString(R.string.desculpe), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Bundle bundle = new Bundle();
+                bundle.putString("problema", nomeProblema);
+                NavHostFragment.findNavController(ProblemaFragment.this)
+                        .navigate(R.id.ProblemaParaSimulador, bundle);
             }
         });
 

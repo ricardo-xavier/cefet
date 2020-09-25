@@ -8,13 +8,14 @@ public class Variavel {
     private String nome;
     private int inicio;
     private int fim;
-    private List<Valor> valores;
+    private List<Termo> termos;
+    private int crisp;
 
     public Variavel(String nome, int inicio, int fim) {
         this.nome = nome;
         this.inicio = inicio;
         this.fim = fim;
-        this.valores = new ArrayList<>();
+        this.termos = new ArrayList<>();
     }
 
     public String getNome() {
@@ -41,12 +42,19 @@ public class Variavel {
         this.fim = fim;
     }
 
-    public List<Valor> getValores() {
-        return valores;
+    public List<Termo> getTermos() {
+        return termos;
     }
 
-    public void setValores(List<Valor> valores) {
-        this.valores = valores;
+    public void setTermos(List<Termo> valores) {
+        this.termos = termos;
     }
 
+    public int getCrisp() {
+        return crisp;
+    }
+
+    public void setCrisp(int crisp) {
+        this.crisp = crisp;
+    }
 }

@@ -29,6 +29,11 @@
         <action
             android:id="@+id/ProblemaParaRegras"
             app:destination="@id/RegrasFragment" />
+
+        <action
+            android:id="@+id/ProblemaParaSimulador"
+            app:destination="@id/SimuladorFragment" />
+
     </fragment>
 
     <fragment
@@ -47,6 +52,13 @@
         android:name="xavier.ricardo.myfuzzy.RegrasFragment"
         android:label="@string/regras_label"
         tools:layout="@layout/fragment_regras">
+    </fragment>
+
+    <fragment
+        android:id="@+id/SimuladorFragment"
+        android:name="xavier.ricardo.myfuzzy.SimuladorFragment"
+        android:label="@string/simulador_label"
+        tools:layout="@layout/fragment_simulador">
     </fragment>
 
     <fragment

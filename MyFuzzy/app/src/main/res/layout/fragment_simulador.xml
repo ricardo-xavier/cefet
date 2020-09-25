@@ -13,25 +13,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/problema" />
 
-    <Button
-        android:id="@+id/btnVariaveis"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/llEntrada"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/variaveis" />
+        android:gravity="center_horizontal"
+        android:orientation="vertical"></LinearLayout>
 
     <Button
-        android:id="@+id/btnRegras"
+        android:id="@+id/btnSimular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/regras" />
+        android:text="@string/simular" />
 
-    <Button
-        android:id="@+id/btnSimulador"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/llSaida"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/simulador" />
+        android:gravity="center_horizontal"
+        android:orientation="vertical"></LinearLayout>
 
 </LinearLayout>

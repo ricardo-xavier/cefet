@@ -8,6 +8,7 @@
     <string name="variaveis_label">Variáveis linguísticas</string>
     <string name="valores_label">Termos linguísticos</string>
     <string name="regras_label">Regras</string>
+    <string name="simulador_label">Simulador</string>
     <string name="grafico_variavel_label">Gráfico</string>
 
     <string name="problemas">Problemas</string>
@@ -18,6 +19,7 @@
     <string name="simulador">Simulador</string>
     <string name="valores">Termos linguísticos</string>
     <string name="grafico">Gráfico</string>
+    <string name="simular">Simular</string>
     <string name="universo">Universo:</string>
     <string name="desculpe">Desculpe. Opção não implementada. Aguarde as próximas versões.</string>
 </resources>

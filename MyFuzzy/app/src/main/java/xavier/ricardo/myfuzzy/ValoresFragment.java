@@ -19,8 +19,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import xavier.ricardo.myfuzzy.exemplos.Gorjeta;
 import xavier.ricardo.myfuzzy.tipos.Problema;
-import xavier.ricardo.myfuzzy.tipos.Valor;
+import xavier.ricardo.myfuzzy.tipos.Termo;
 import xavier.ricardo.myfuzzy.tipos.Variavel;
 
 public class ValoresFragment extends Fragment {
@@ -63,18 +64,18 @@ public class ValoresFragment extends Fragment {
 
         List<Map<String, String>> valores = new ArrayList<>();
 
-        for (Valor valor : variavel.getValores()) {
+        for (Termo termo : variavel.getTermos()) {
             Map<String, String> colunas = new HashMap<>();
-            colunas.put("valor", valor.getNome());
-            colunas.put("detalhes", "triangular: " + valor.getInicio() + " "
-                    + valor.getMaximo() + " " + valor.getFim());
+            colunas.put("termo", termo.getNome());
+            colunas.put("detalhes", "triangular: " + termo.getA() + " "
+                    + termo.getB() + " " + termo.getC());
             valores.add(colunas);
         }
 
         SimpleAdapter adapter = new SimpleAdapter(getContext(),
                 valores,
                 android.R.layout.simple_list_item_2,
-                new String[] { "valor", "detalhes" },
+                new String[] { "termo", "detalhes" },
                 new int[] { android.R.id.text1, android.R.id.text2 });
 
         lvValores.setAdapter(adapter);
