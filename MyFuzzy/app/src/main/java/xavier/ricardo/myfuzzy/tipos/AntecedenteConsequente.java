@@ -3,11 +3,11 @@ package xavier.ricardo.myfuzzy.tipos;
 public class AntecedenteConsequente {
 
     private Variavel variavel;
-    private Termo valor;
+    private Termo termo;
 
-    public AntecedenteConsequente(Variavel variavel, Termo valor) {
+    public AntecedenteConsequente(Variavel variavel, Termo termo) {
         this.variavel = variavel;
-        this.valor = valor;
+        this.termo = termo;
     }
 
     public Variavel getVariavel() {
@@ -18,11 +18,11 @@ public class AntecedenteConsequente {
         this.variavel = variavel;
     }
 
-    public Termo getValor() {
-        return valor;
+    public Termo getTermo() {
+        return termo;
     }
 
-    public void setValor(Termo valor) {
-        this.valor = valor;
+    public void setTermo(Termo valor) {
+        this.termo = termo;
     }
 }

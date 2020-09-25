@@ -42,21 +42,8 @@ public class RegrasFragment extends Fragment {
         Problema problema = Gorjeta.carrega();
         for (Regra r : problema.getRegras()) {
             Map<String, String> colunas = new HashMap<>();
-
-            StringBuilder expr = new StringBuilder();
-            for (int a=0; a<r.getAntecedentes().size(); a++) {
-                AntecedenteConsequente antecedente = r.getAntecedentes().get(a);
-                expr.append("SE " + antecedente.getVariavel().getNome() + " é " + antecedente.getValor().getNome());
-                Operador operador = r.getOperadores().get(a);
-                if (operador != null) {
-                    expr.append(operador == Operador.OR ? " OU " : " E ");
-                }
-            }
-            colunas.put("condicoes", expr.toString());
-
-            expr = new StringBuilder();
-            expr.append(" ENTÃO " + r.getConsequente().getVariavel().getNome() + " é " + r.getConsequente().getValor().getNome());
-            colunas.put("resultado", expr.toString());
+            colunas.put("condicoes", r.getExprAntecedente());
+            colunas.put("resultado", r.getExprConsequente());
             regras.add(colunas);
         }
 

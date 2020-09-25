@@ -7,6 +7,7 @@ public class Termo {
     private Integer b;
     private Integer c;
     private Integer d;
+    private double pertinencia;
 
     public Termo(String nome, Integer a, Integer b, Integer c) {
         this(nome, a, b, c, null);
@@ -69,5 +70,13 @@ public class Termo {
 
     public void setD(Integer d) {
         this.d = d;
+    }
+
+    public double getPertinencia() {
+        return pertinencia;
+    }
+
+    public void setPertinencia(double pertinencia) {
+        this.pertinencia = pertinencia;
     }
 }

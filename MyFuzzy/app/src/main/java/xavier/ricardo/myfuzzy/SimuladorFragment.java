@@ -124,9 +124,9 @@ public class SimuladorFragment extends Fragment {
         btnSimular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int crisp = Simulador.sumula(problema);
-                sbValor.setProgress(crisp);
-                etValor.setText(String.valueOf(crisp));
+                double crisp = Simulador.sumula(problema);
+                sbValor.setProgress((int) crisp);
+                etValor.setText(String.valueOf((int) crisp));
             }
         });
 
