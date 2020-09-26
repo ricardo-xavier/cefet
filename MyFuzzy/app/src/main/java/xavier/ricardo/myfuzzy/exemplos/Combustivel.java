@@ -8,6 +8,7 @@ import xavier.ricardo.myfuzzy.tipos.Operador;
 import xavier.ricardo.myfuzzy.tipos.Problema;
 import xavier.ricardo.myfuzzy.tipos.Regra;
 import xavier.ricardo.myfuzzy.tipos.Termo;
+import xavier.ricardo.myfuzzy.tipos.TipoVariavel;
 import xavier.ricardo.myfuzzy.tipos.Variavel;
 
 public class Combustivel {
@@ -16,13 +17,13 @@ public class Combustivel {
 
         List<Variavel> variaveis = new ArrayList<>();
 
-        Variavel velocidade = new Variavel("velocidade", 0, 200);
+        Variavel velocidade = new Variavel("velocidade", 0, 200, TipoVariavel.ANTECEDENTE);
         velocidade.getTermos().add(new Termo("baixa", 0, 0, 40, 80));
         velocidade.getTermos().add(new Termo("media",  60, 80, 110));
         velocidade.getTermos().add(new Termo("alta", 90, 140, 200, 200));
         variaveis.add(velocidade);
 
-        Variavel consumo = new Variavel("consumo", 0, 10);
+        Variavel consumo = new Variavel("consumo", 0, 10, TipoVariavel.CONSEQUENTE);
         consumo.getTermos().add(new Termo("baixo", 12, 20, 25, 25));
         consumo.getTermos().add(new Termo("medio", 0, 12, 14));
         consumo.getTermos().add(new Termo("alto", 0, 0, 5, 10));
