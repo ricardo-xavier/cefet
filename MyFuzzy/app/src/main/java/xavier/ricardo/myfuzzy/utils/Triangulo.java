@@ -6,16 +6,16 @@ import xavier.ricardo.myfuzzy.tipos.Termo;
 
 public class Triangulo {
 
-    public static double  pertinencia(Termo termo, int crisp) {
+    public static double getY(Termo termo, int crisp) {
 
         Log.i("simulador", "triangulo:" + termo.getNome());
 
-        if (crisp == termo.getA() || crisp == termo.getC()) {
-            return 0.;
-        }
-
         if (crisp == termo.getB()) {
             return 1.;
+        }
+
+        if (crisp == termo.getA() || crisp == termo.getC()) {
+            return 0.;
         }
 
         double x1;
@@ -41,7 +41,7 @@ public class Triangulo {
         double a = (y2 - y1) / (x2 - x1);
 
         double y = a * ( crisp - b);
-
+        Log.i("simulador", "y:" + y);
         return y;
     }
 }

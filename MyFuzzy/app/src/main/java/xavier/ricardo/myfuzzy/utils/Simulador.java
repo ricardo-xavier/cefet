@@ -7,24 +7,38 @@ import xavier.ricardo.myfuzzy.tipos.Operador;
 import xavier.ricardo.myfuzzy.tipos.Problema;
 import xavier.ricardo.myfuzzy.tipos.Regra;
 import xavier.ricardo.myfuzzy.tipos.Termo;
+import xavier.ricardo.myfuzzy.tipos.TipoVariavel;
 import xavier.ricardo.myfuzzy.tipos.Variavel;
 
 public class Simulador {
 
-    public static double sumula(Problema problema) {
+    public static double simula(Problema problema) {
 
-        for (int v=0; v<problema.getVariaveis().size()-1; v++) {
+        double resultado = 0;
+
+        // inicializa pertinencias de antecedentes e consequentes
+        for (int v=0; v<problema.getVariaveis().size(); v++) {
+            Variavel variavel = problema.getVariaveis().get(v);
+            for (Termo termo : variavel.getTermos()) {
+                termo.setPertinencia(0);
+            }
+        }
+
+        // avalia antecedentes
+        for (int v=0; v<problema.getVariaveis().size(); v++) {
 
             Variavel variavel = problema.getVariaveis().get(v);
+            if (variavel.getTipo() != TipoVariavel.ANTECEDENTE) {
+                continue;
+            }
 
             int crisp = variavel.getCrisp();
             Log.i("simulador", variavel.getNome() + " " + crisp);
 
+            // seta a pertinencia dos termos
             for (Termo termo : variavel.getTermos()) {
 
                 Log.i("simulador", termo.toString());
-                termo.setPertinencia(0);
-
                 if (crisp < termo.getA()) {
                     continue;
                 }
@@ -33,19 +47,19 @@ public class Simulador {
                     if (crisp > termo.getD()) {
                         continue;
                     }
+                    //TODO trapezoidal
                 } else {
                     if (crisp > termo.getC()) {
                         continue;
                     }
-                    termo.setPertinencia(Triangulo.pertinencia(termo, crisp));
+                    termo.setPertinencia(Triangulo.getY(termo, crisp));
                 }
 
             }
 
         }
 
-        Double ativacaoFinal = null;
-
+        // avalia regras
         for (Regra regra : problema.getRegras()) {
 
             Log.i("simulador", "regra: " + regra.getExprAntecedente());
@@ -81,8 +95,48 @@ public class Simulador {
                 operador = regra.getOperadores().get(a);
             }
 
+            regra.getConsequente().getTermo().setPertinencia(ativacao);
+
         }
 
-        return 0.;
+        // avalia o consequente
+        for (Variavel variavel : problema.getVariaveis()) {
+
+            if (variavel.getTipo() != TipoVariavel.CONSEQUENTE) {
+                continue;
+            }
+
+            int n = variavel.getFim() - variavel.getInicio() + 1;
+            double[] x = new double[n];
+            double[] y = new double[n];
+
+            int j = 0;
+            for (int i=variavel.getInicio(); i<=variavel.getFim(); i++) {
+                x[j] = i;
+                y[j] = 0;
+                for (Termo termo : variavel.getTermos()) {
+                    if ((i < termo.getA()) || (i > termo.getC())) { //TODO trapezio
+                        continue;
+                    }
+                    double pertinenciaTermo = termo.getPertinencia();
+                    if (pertinenciaTermo <= y[j]) {
+                        continue;
+                    }
+                    double pertinenciaX = Triangulo.getY(termo, i);
+                    if (pertinenciaX > pertinenciaTermo) {
+                        pertinenciaX = pertinenciaTermo;
+                    }
+                    if (pertinenciaX > y[j]) {
+                        y[j] = pertinenciaX;
+                    }
+                }
+                j++;
+            }
+
+            resultado = Centroid.centroid(x, y);
+            break;
+        }
+
+        return resultado;
     }
 }
