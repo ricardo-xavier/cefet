@@ -1,5 +1,6 @@
 package xavier.ricardo.myfuzzy;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -137,6 +138,15 @@ public class SimuladorFragment extends Fragment {
 
             }
         });
+
+        btnGrafico.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), GraficoResultActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 }

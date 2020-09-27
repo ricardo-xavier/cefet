@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PassosActivity"></activity>
+        <activity android:name=".GraficoResultActivity"></activity>
+        <activity android:name=".PassosActivity" />
         <activity
             android:name=".GraficoActivity"
             android:screenOrientation="portrait" />

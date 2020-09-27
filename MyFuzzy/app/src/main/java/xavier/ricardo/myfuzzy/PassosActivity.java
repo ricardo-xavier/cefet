@@ -8,6 +8,7 @@ import android.webkit.WebView;
 
 import xavier.ricardo.myfuzzy.exemplos.Gorjeta;
 import xavier.ricardo.myfuzzy.tipos.Problema;
+import xavier.ricardo.myfuzzy.tipos.Regra;
 import xavier.ricardo.myfuzzy.tipos.Termo;
 import xavier.ricardo.myfuzzy.tipos.TipoVariavel;
 import xavier.ricardo.myfuzzy.tipos.Variavel;
@@ -26,7 +27,7 @@ public class PassosActivity extends AppCompatActivity {
         html.append("<html>");
         html.append("<body>");
 
-        html.append("<h5>Fuzifica&ccedil;&atilde;o:</h5>");
+        html.append("<h5>Pertin&eacute;ncia:</h5>");
         for (Variavel variavel : problema.getVariaveis()) {
 
             if (variavel.getTipo() == TipoVariavel.CONSEQUENTE) {
@@ -34,9 +35,17 @@ public class PassosActivity extends AppCompatActivity {
             }
 
             for (Termo termo : variavel.getTermos()) {
-                html.append(String.format("&mu;<sub>%s</sub>(%s) = %.2f<br/>",
-                        termo.getNome(), variavel.getNome(), termo.getPertinencia()));
+                html.append(String.format("&mu;<sub>%s</sub>(%d) = %.2f<br/>",
+                        termo.getNome(), variavel.getCrisp(), termo.getPertinencia()));
             }
+        }
+
+        html.append("<h5>Regras:</h5>");
+
+        int r = 1;
+        for (Regra regra : problema.getRegras()) {
+            html.append(String.format("w<sub>%d</sub> = %.2f<br/>",
+                    r++, regra.getConsequente().getTermo().getPertinencia()));
         }
 
         html.append("</body>");
