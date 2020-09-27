@@ -35,9 +35,8 @@ public class VariaveisFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        String nomeProblema = getArguments().getString("problema");
         List<Map<String, String>> variaveis = new ArrayList<>();
-        Problema problema = Gorjeta.carrega();
+        Problema problema = ProblemasFragment.getProblema();
         for (Variavel variavel : problema.getVariaveis()) {
             Map<String, String> colunas = new HashMap<>();
             colunas.put("variavel", variavel.getNome());

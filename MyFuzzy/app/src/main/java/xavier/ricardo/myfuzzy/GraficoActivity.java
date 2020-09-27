@@ -18,7 +18,7 @@ public class GraficoActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String nomeVariavel = intent.getStringExtra("variavel");
-        Problema problema = Gorjeta.carrega();
+        Problema problema = ProblemasFragment.getProblema();
         Variavel variavel = null;
         for (Variavel v : problema.getVariaveis()) {
             if (v.getNome().equals(nomeVariavel)) {

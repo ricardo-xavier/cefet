@@ -44,7 +44,7 @@ public class ValoresFragment extends Fragment {
         TextView tvVariavel = view.findViewById(R.id.tvVariavel);
         tvVariavel.setText(tvVariavel.getText().toString().replace("$variavel", nomeVariavel));
 
-        Problema problema = Gorjeta.carrega();
+        Problema problema = ProblemasFragment.getProblema();
         Variavel variavel = null;
         for (Variavel v : problema.getVariaveis()) {
             if (v.getNome().equals(nomeVariavel)) {

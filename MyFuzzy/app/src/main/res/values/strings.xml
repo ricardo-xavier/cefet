@@ -12,6 +12,7 @@
     <string name="grafico_variavel_label">Gráfico</string>
 
     <string name="problemas">Problemas</string>
+    <string name="passos">Passos</string>
     <string name="problema">Problema: $problema</string>
     <string name="variavel">Variável: $variavel</string>
     <string name="variaveis">Variáveis linguísticas</string>

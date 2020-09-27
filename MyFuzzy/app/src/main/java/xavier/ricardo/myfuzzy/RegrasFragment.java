@@ -39,7 +39,7 @@ public class RegrasFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         List<Map<String, String>> regras = new ArrayList<>();
-        Problema problema = Gorjeta.carrega();
+        Problema problema = ProblemasFragment.getProblema();
         for (Regra r : problema.getRegras()) {
             Map<String, String> colunas = new HashMap<>();
             colunas.put("condicoes", r.getExprAntecedente());

@@ -37,12 +37,15 @@ public class SimuladorFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         super.onViewCreated(view, savedInstanceState);
 
-        String nomeProblema = getArguments().getString("problema");
+        Button btnPassos = view.findViewById(R.id.btnPassos);
+        btnPassos.setVisibility(View.INVISIBLE);
+        Button btnGrafico = view.findViewById(R.id.btnGrafico);
+        btnGrafico.setVisibility(View.INVISIBLE);
 
-        Problema problema = Gorjeta.carrega();
+        Problema problema = ProblemasFragment.getProblema();
 
         TextView tvProblema = view.findViewById(R.id.tvProblema);
-        tvProblema.setText(tvProblema.getText().toString().replace("$problema", nomeProblema));
+        tvProblema.setText(tvProblema.getText().toString().replace("$problema", problema.getNome()));
 
         LinearLayout llEntrada = view.findViewById(R.id.llEntrada);
 
@@ -128,6 +131,10 @@ public class SimuladorFragment extends Fragment {
                 int i = (int) Math. round(crisp);
                 sbValor.setProgress(i);
                 etValor.setText(String.valueOf(i));
+
+                btnPassos.setVisibility(View.VISIBLE);
+                btnGrafico.setVisibility(View.VISIBLE);
+
             }
         });
 

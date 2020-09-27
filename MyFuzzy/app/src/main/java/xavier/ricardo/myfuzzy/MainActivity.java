@@ -1,5 +1,6 @@
 package xavier.ricardo.myfuzzy;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.ads.AdRequest;
@@ -64,5 +65,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void passos(View v) {
+        Intent intent = new Intent(this, PassosActivity.class);
+        startActivity(intent);
     }
 }

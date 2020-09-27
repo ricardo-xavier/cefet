@@ -11,8 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
-import com.google.android.material.snackbar.Snackbar;
-
 import xavier.ricardo.myfuzzy.tipos.Problema;
 
 public class ProblemaFragment extends Fragment {
@@ -31,19 +29,17 @@ public class ProblemaFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         super.onViewCreated(view, savedInstanceState);
 
-        String nomeProblema = getArguments().getString("problema");
+        Problema problema = ProblemasFragment.getProblema();
 
         TextView tvProblema = view.findViewById(R.id.tvProblema);
-        tvProblema.setText(tvProblema.getText().toString().replace("$problema", nomeProblema));
+        tvProblema.setText(tvProblema.getText().toString().replace("$problema", problema.getNome()));
 
         Button btnVariaveis = view.findViewById(R.id.btnVariaveis);
         btnVariaveis.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("problema", nomeProblema);
                 NavHostFragment.findNavController(ProblemaFragment.this)
-                        .navigate(R.id.ProblemaParaVariaveis, bundle);
+                        .navigate(R.id.ProblemaParaVariaveis);
             }
         });
 
@@ -51,10 +47,8 @@ public class ProblemaFragment extends Fragment {
         btnRegras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("problema", nomeProblema);
                 NavHostFragment.findNavController(ProblemaFragment.this)
-                        .navigate(R.id.ProblemaParaRegras, bundle);
+                        .navigate(R.id.ProblemaParaRegras);
             }
         });
 
@@ -62,10 +56,8 @@ public class ProblemaFragment extends Fragment {
         btnSimulador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("problema", nomeProblema);
                 NavHostFragment.findNavController(ProblemaFragment.this)
-                        .navigate(R.id.ProblemaParaSimulador, bundle);
+                        .navigate(R.id.ProblemaParaSimulador);
             }
         });
 

@@ -34,6 +34,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:orientation="vertical"></LinearLayout>
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnPassos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="passos"
+            android:text="@string/passos" />
+
+        <Button
+            android:id="@+id/btnGrafico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/grafico" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -20,6 +20,8 @@ import xavier.ricardo.myfuzzy.tipos.Problema;
 
 public class ProblemasFragment extends Fragment {
 
+    private static Problema problema;
+
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -33,7 +35,7 @@ public class ProblemasFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        Problema problema = Gorjeta.carrega();
+        problema = Gorjeta.carrega();
         List<String> problemas = new ArrayList<>();
         problemas.add(problema.getNome());
 
@@ -44,11 +46,17 @@ public class ProblemasFragment extends Fragment {
         lvProblemas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Bundle bundle = new Bundle();
-                bundle.putString("problema", problemas.get(position));
                 NavHostFragment.findNavController(ProblemasFragment.this)
-                        .navigate(R.id.ProblemasParaProblema, bundle);
+                        .navigate(R.id.ProblemasParaProblema);
             }
         });
+    }
+
+    public static Problema getProblema() {
+        return problema;
+    }
+
+    public static void setProblema(Problema problema) {
+        ProblemasFragment.problema = problema;
     }
 }

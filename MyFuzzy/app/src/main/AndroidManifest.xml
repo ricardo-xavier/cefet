@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GraficoActivity"
+        <activity android:name=".PassosActivity"></activity>
+        <activity
+            android:name=".GraficoActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
@@ -27,7 +29,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-0381609228541841~8494761522" />
@@ -35,7 +36,6 @@
         <activity
             android:name="com.google.android.gms.ads.AdActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize" />
-
     </application>
 
 </manifest>
