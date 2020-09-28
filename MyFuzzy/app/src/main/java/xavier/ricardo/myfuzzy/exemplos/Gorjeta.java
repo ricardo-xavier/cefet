@@ -45,7 +45,7 @@ public class Gorjeta {
 
     }
 
-    public static Problema carrega() {
+    public static Problema inicializa() {
 
         List<Variavel> variaveis = new ArrayList<>();
 

@@ -20,12 +20,12 @@ public class ProblemaDao {
 
     }
 
-    public Problema retrieve(String nome) {
+    public static List<String> getAll() {
 
-        List<Variavel> variaveis = new ArrayList<>();
-        List<Regra> regras = new ArrayList<>();
-        Problema problema = new Problema(nome, variaveis, regras);
-        return problema;
+        List<String> problemas = new ArrayList<>();
+        //TODO
+        return problemas;
 
     }
+
 }
