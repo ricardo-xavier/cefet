@@ -1,6 +1,7 @@
 package xavier.ricardo.myfuzzy;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.google.android.gms.ads.AdRequest;
@@ -16,6 +17,10 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+
+import xavier.ricardo.myfuzzy.exemplos.Gorjeta;
+import xavier.ricardo.myfuzzy.tipos.Problema;
+import xavier.ricardo.myfuzzy.utils.DbHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +39,12 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+        DbHelper mDbHelper = new DbHelper(this);
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        Problema gorjeta = Gorjeta.carrega();
+        Gorjeta.popula(db, gorjeta);
+        db.close();
 
         // ca-app-pub-3940256099942544/6300978111 teste
         // ca-app-pub-0381609228541841/9233128121 soft
