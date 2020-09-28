@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".ValoresFragment">
+    tools:context=".TermosFragment">
 
     <TextView
         android:id="@+id/tvVariavel"

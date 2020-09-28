@@ -63,9 +63,9 @@
 
     <fragment
         android:id="@+id/ValoresFragment"
-        android:name="xavier.ricardo.myfuzzy.ValoresFragment"
+        android:name="xavier.ricardo.myfuzzy.TermosFragment"
         android:label="@string/valores_label"
-        tools:layout="@layout/fragment_valores">
+        tools:layout="@layout/fragment_termos">
     </fragment>
 
 </navigation>
