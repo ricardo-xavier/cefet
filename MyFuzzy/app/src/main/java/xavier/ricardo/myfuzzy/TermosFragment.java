@@ -24,7 +24,7 @@ import xavier.ricardo.myfuzzy.tipos.Problema;
 import xavier.ricardo.myfuzzy.tipos.Termo;
 import xavier.ricardo.myfuzzy.tipos.Variavel;
 
-public class ValoresFragment extends Fragment {
+public class TermosFragment extends Fragment {
 
     @Override
     public View onCreateView(

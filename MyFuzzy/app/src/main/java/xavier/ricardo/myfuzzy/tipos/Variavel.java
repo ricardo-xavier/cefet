@@ -48,7 +48,7 @@ public class Variavel {
         return termos;
     }
 
-    public void setTermos(List<Termo> valores) {
+    public void setTermos(List<Termo> termos) {
         this.termos = termos;
     }
 

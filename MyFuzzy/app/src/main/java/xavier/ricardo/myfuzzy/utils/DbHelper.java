@@ -6,6 +6,9 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
+import xavier.ricardo.myfuzzy.exemplos.Gorjeta;
+import xavier.ricardo.myfuzzy.tipos.Problema;
+
 public class DbHelper extends SQLiteOpenHelper {
 
 
@@ -40,12 +43,16 @@ public class DbHelper extends SQLiteOpenHelper {
 
         sqLiteDatabase.execSQL("create table ANTECEDENTES_CONSEQUENTES ("
                 + "PROBLEMA char(20) not null, "
+                + "REGRA integer not null, "
                 + "TIPO char(1) not null, "
                 + "SEQ integer not null, "
                 + "VARIAVEL char(20) not null, "
                 + "TERMO char(20) not null, "
-                + "OPERADOR char(1) not null, "
-                + "primary key (PROBLEMA, TIPO, SEQ))");
+                + "OPERADOR char(1), "
+                + "primary key (PROBLEMA, REGRA, TIPO, SEQ))");
+
+        Problema gorjeta = Gorjeta.inicializa();
+        Gorjeta.popula(sqLiteDatabase, gorjeta);
 
     }
 

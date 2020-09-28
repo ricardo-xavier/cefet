@@ -2,6 +2,7 @@ package xavier.ricardo.myfuzzy.exemplos;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,15 +33,18 @@ public class Gorjeta {
                 TermoDao.insert(db, problema.getNome(), variavel.getNome(), termo);
             }
 
-            for (Regra regra : problema.getRegras()) {
-                for (int a=0; a<regra.getAntecedentes().size(); a++) {
-                    AntecedenteConsequenteDao.insert(db, problema.getNome(), "A", a+1,
-                            regra.getAntecedentes().get(a), regra.getOperadores().get(a));
-                }
-                AntecedenteConsequenteDao.insert(db, problema.getNome(), "C", 1,
-                        regra.getConsequente(), null);
-            }
+        }
 
+        int r = 1;
+        for (Regra regra : problema.getRegras()) {
+            Log.i("BANCO", "popula regra:" + r);
+            for (int a=0; a<regra.getAntecedentes().size(); a++) {
+                AntecedenteConsequenteDao.insert(db, problema.getNome(), r, "A", a+1,
+                        regra.getAntecedentes().get(a), regra.getOperadores().get(a));
+            }
+            AntecedenteConsequenteDao.insert(db, problema.getNome(), r, "C", 1,
+                    regra.getConsequente(), null);
+            r++;
         }
 
     }

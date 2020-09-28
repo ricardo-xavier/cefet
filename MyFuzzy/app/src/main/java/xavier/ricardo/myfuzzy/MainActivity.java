@@ -40,11 +40,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        DbHelper mDbHelper = new DbHelper(this);
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
-        Problema gorjeta = Gorjeta.carrega();
-        Gorjeta.popula(db, gorjeta);
-        db.close();
+        Problema gorjeta = Gorjeta.inicializa();
 
         // ca-app-pub-3940256099942544/6300978111 teste
         // ca-app-pub-0381609228541841/9233128121 soft

@@ -5,6 +5,9 @@ public class AntecedenteConsequente {
     private Variavel variavel;
     private Termo termo;
 
+    public AntecedenteConsequente() {
+    }
+
     public AntecedenteConsequente(Variavel variavel, Termo termo) {
         this.variavel = variavel;
         this.termo = termo;
@@ -22,7 +25,7 @@ public class AntecedenteConsequente {
         return termo;
     }
 
-    public void setTermo(Termo valor) {
+    public void setTermo(Termo termo) {
         this.termo = termo;
     }
 }

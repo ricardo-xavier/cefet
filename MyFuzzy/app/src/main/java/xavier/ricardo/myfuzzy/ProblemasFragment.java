@@ -1,5 +1,6 @@
 package xavier.ricardo.myfuzzy;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +16,10 @@ import androidx.navigation.fragment.NavHostFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import xavier.ricardo.myfuzzy.dao.ProblemaDao;
 import xavier.ricardo.myfuzzy.exemplos.Gorjeta;
 import xavier.ricardo.myfuzzy.tipos.Problema;
+import xavier.ricardo.myfuzzy.utils.DbHelper;
 
 public class ProblemasFragment extends Fragment {
 
@@ -35,9 +38,10 @@ public class ProblemasFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
-        problema = Gorjeta.carrega();
-        List<String> problemas = new ArrayList<>();
-        problemas.add(problema.getNome());
+        DbHelper mDbHelper = new DbHelper(getActivity());
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
+        List<String> problemas = ProblemaDao.getAll(db);
+        db.close();
 
         ListView lvProblemas = view.findViewById(R.id.lvProblemas);
         ArrayAdapter adapter = new ArrayAdapter<String>(getContext(),
@@ -46,6 +50,10 @@ public class ProblemasFragment extends Fragment {
         lvProblemas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String nomeProblema = problemas.get(position);
+                SQLiteDatabase db = mDbHelper.getReadableDatabase();
+                problema = ProblemaDao.get(db, nomeProblema);
+                db.close();
                 NavHostFragment.findNavController(ProblemasFragment.this)
                         .navigate(R.id.ProblemasParaProblema);
             }
