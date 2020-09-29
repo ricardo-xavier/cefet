@@ -22,9 +22,9 @@ public class AntecedenteConsequenteDao {
         if (op != null) {
             contentValues.put("OPERADOR", op == Operador.AND ? "&" : "|");
         }
-        Log.i("BANCO", "insert regra:" + regra + " " + tipo + " " + seq);
+        //Log.i("BANCO", "insert regra:" + regra + " " + tipo + " " + seq);
         long newRowId = db.insert("ANTECEDENTES_CONSEQUENTES", null, contentValues);
-        Log.i("BANCO", "insert newRowId:" + newRowId);
+        //Log.i("BANCO", "insert newRowId:" + newRowId);
 
     }
 }

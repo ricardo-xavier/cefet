@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -32,7 +33,7 @@ public class DrawResultView extends View {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
         width = MeasureSpec.getSize(widthMeasureSpec);
-        height = width; // MeasureSpec.getSize(heightMeasureSpec);
+        height = width;
         setMeasuredDimension(width, MeasureSpec.getSize(heightMeasureSpec));
 
     }
@@ -83,6 +84,7 @@ public class DrawResultView extends View {
         canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
 
         Problema problema = ProblemasFragment.getProblema();
+        double resultado = problema.getResultado();
 
         Variavel variavel = null;
         for (Variavel var : problema.getVariaveis()) {
@@ -105,35 +107,32 @@ public class DrawResultView extends View {
             v += dv;
         }
 
-        paint.setColor(Color.rgb(240, 250, 250));
+        // pinta a area do resultado
+        paint.setColor(Color.rgb(210, 230, 230));
         paint.setStyle(Paint.Style.FILL);
-        for (int r=0; r<problema.getRegras().size(); r++) {
-            Regra regra = problema.getRegras().get(r);
-            Variavel var = regra.getConsequente().getVariavel();
-            for (Termo termo : var.getTermos()) {
-                float xA = termo.getA() / dv * dx;
-                float yA = 0;
+        for (Termo termo : variavel.getTermos()) {
+            float xA = termo.getA() / dv * dx;
+            float yA = 0;
 
-                float xB = (float) Triangulo.getX1(termo, termo.getPertinencia()) / dv * dx;
-                float yB = (float) termo.getPertinencia() * (height - yMargin * 2);
+            float xB = (float) Triangulo.getX1(termo, termo.getPertinencia()) / dv * dx;
+            float yB = (float) termo.getPertinencia() * (height - yMargin * 2);
 
-                float xC = (float) Triangulo.getX2(termo, termo.getPertinencia()) / dv * dx;
-                float yC = (float) termo.getPertinencia() * (height - yMargin * 2);
+            float xC = (float) Triangulo.getX2(termo, termo.getPertinencia()) / dv * dx;
+            float yC = (float) termo.getPertinencia() * (height - yMargin * 2);
 
-                float xD = termo.getC() / dv * dx;
-                float yD = 0;
+            float xD = termo.getC() / dv * dx;
+            float yD = 0;
 
-                Path path = new Path();
-                path.moveTo(_x(xA), _y(yA));
-                path.lineTo(_x(xB), _y(yB));
-                path.lineTo(_x(xC), _y(yC));
-                path.lineTo(_x(xD), _y(yD));
-                path.moveTo(_x(xA), _y(yA));
-                canvas.drawPath(path, paint);
-            }
-
+            Path path = new Path();
+            path.moveTo(_x(xA), _y(yA));
+            path.lineTo(_x(xB), _y(yB));
+            path.lineTo(_x(xC), _y(yC));
+            path.lineTo(_x(xD), _y(yD));
+            path.moveTo(_x(xA), _y(yA));
+            canvas.drawPath(path, paint);
         }
 
+        // delimita as areas dos termos
         paint.setStrokeWidth(2);
         paint.setStyle(Paint.Style.STROKE);
         int[] colors = { Color.RED, Color.rgb(0, 128, 0), Color.BLUE } ;
@@ -146,21 +145,17 @@ public class DrawResultView extends View {
             if (termo.getD() == null) {
                 // triangular
 
-                if (termo.getA() != termo.getB()) {
-                    y1 = 0f;
-                    y2 = height - yMargin * 2;
-                    x1 = termo.getA() / dv * dx;
-                    x2 = termo.getB() / dv * dx;
-                    canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
-                }
+                y1 = 0f;
+                y2 = height - yMargin * 2;
+                x1 = termo.getA() / dv * dx;
+                x2 = termo.getB() / dv * dx;
+                canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
 
-                if (termo.getB() != termo.getC()) {
-                    y1 = height - yMargin * 2;
-                    y2 = 0f;
-                    x1 = termo.getB() / dv * dx;
-                    x2 = termo.getC() / dv * dx;
-                    canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
-                }
+                y1 = height - yMargin * 2;
+                y2 = 0f;
+                x1 = termo.getB() / dv * dx;
+                x2 = termo.getC() / dv * dx;
+                canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
             }
 
             canvas.drawLine(_x(0), height + 50 * (c + 1), _x(100), height + 50 * (c + 1), paint);
@@ -171,6 +166,31 @@ public class DrawResultView extends View {
 
         }
 
+        // marca o resultado
+        for (Termo termo : variavel.getTermos()) {
+            mostraResultado(canvas, termo, resultado, dv, dx);
+        }
+
+    }
+
+    private void mostraResultado(Canvas canvas, Termo termo, double resultado, float dv, float dx) {
+
+        if (resultado < termo.getA() || resultado > termo.getC()) {
+            return;
+        }
+
+        Paint paint = new Paint();
+        paint.setColor(Color.BLACK);
+        paint.setStrokeWidth(2);
+
+        float xR = (float) resultado / dv * dx;
+        double aux = Triangulo.getY(termo, resultado);
+        if (aux > termo.getPertinencia()) {
+            aux = termo.getPertinencia();
+        }
+        float yR = (float) aux * (height - yMargin * 2);
+
+        canvas.drawLine(_x(xR), _y(0), _x(xR), _y(yR), paint);
     }
 
 }

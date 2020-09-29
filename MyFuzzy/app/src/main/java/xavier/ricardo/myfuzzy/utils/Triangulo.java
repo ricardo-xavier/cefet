@@ -6,15 +6,15 @@ import xavier.ricardo.myfuzzy.tipos.Termo;
 
 public class Triangulo {
 
-    public static double getY(Termo termo, int crisp) {
+    public static double getY(Termo termo, double crisp) {
 
-        Log.i("simulador", "triangulo getY:" + termo.getNome());
+        //Log.i("simulador", "triangulo getY:" + termo.getNome());
 
-        if (crisp == termo.getB()) {
+        if ((int) crisp == termo.getB()) {
             return 1.;
         }
 
-        if (crisp == termo.getA() || crisp == termo.getC()) {
+        if ((int) crisp == termo.getA() || (int) crisp == termo.getC()) {
             return 0.;
         }
 
@@ -41,13 +41,13 @@ public class Triangulo {
         double a = (y2 - y1) / (x2 - x1);
 
         double y = a * ( crisp - b);
-        Log.i("simulador", "y:" + y);
+        //Log.i("simulador", "y:" + y);
         return y;
     }
 
     public static double getX1(Termo termo, double y) {
 
-        Log.i("simulador", "triangulo gwtX1:" + termo.getNome());
+        //Log.i("simulador", "triangulo gwtX1:" + termo.getNome());
 
         if (termo.getA() == termo.getB()) {
             return termo.getA();
@@ -60,13 +60,13 @@ public class Triangulo {
 
         double a = (y2 - y1) / (x2 - x1);
         double x = y / a + termo.getA();
-        Log.i("simulador", "x:" + x);
+        //Log.i("simulador", "x:" + x);
         return x;
     }
 
     public static double getX2(Termo termo, double y) {
 
-        Log.i("simulador", "triangulo gwtX1:" + termo.getNome());
+        //Log.i("simulador", "triangulo gwtX1:" + termo.getNome());
 
         if (termo.getB() == termo.getC()) {
             return termo.getB();
@@ -79,7 +79,7 @@ public class Triangulo {
 
         double a = (y2 - y1) / (x2 - x1);
         double x = y / a + termo.getC();
-        Log.i("simulador", "x:" + x);
+        //Log.i("simulador", "x:" + x);
         return x;
     }
 

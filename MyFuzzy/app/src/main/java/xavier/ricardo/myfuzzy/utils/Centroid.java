@@ -1,9 +1,21 @@
 package xavier.ricardo.myfuzzy.utils;
 
 public class Centroid {
+
+	private static String tabela;
 	
 	public static double centroid(double[] x, double[] y) {
-		
+
+		StringBuilder sb = new StringBuilder();
+		sb.append("<table border=1>\n");
+		sb.append("<tr>\n");
+		sb.append("<td>x1</td>\n");
+		sb.append("<td>x2</td>\n");
+		sb.append("<td>y</td>\n");
+		sb.append("<td>momento</td>\n");
+		sb.append("<td>area</td>\n");
+		sb.append("<td>momento x area</td>\n");
+		sb.append("</tr>\n");
 		double sumMomentArea = 0.;
 		double sumArea = 0.;
 		
@@ -43,17 +55,30 @@ public class Centroid {
 			
 			} else {
 				moment = (2.0 / 3.0 * (x2 - x1) * (y2 + y1 / 2.0)) / (y1 + y2) + x1; // ???
-				area = b * (y1 + y2) / 2.;
+				h = y1 + y2;
+				area = b * h / 2.;
 			}
 
 			sumMomentArea += moment * area;
 			sumArea += area;
+
+			sb.append(String.format("<tr><td>%.0f</td><td>%.0f</td><td>%.0f</td><td>%.2f</td><td>%.2f</td><td>%.2f</td></tr>",
+					x1, x2, h, moment, area, moment*area));
 			
 			//System.out.printf("%d-%s %.0f-%.0f %.1f-%.1f%n", i-1, i, x1, x2, y1, y2);
 			//System.out.println(moment + " " + area);
 		}
+
+		sb.append(String.format("<tr><td colspan=4>Total</td><td>%.2f</td><td>%.2f</td></tr>",
+			sumArea, sumMomentArea));
 		
 		double centroid = sumMomentArea / sumArea;
+		sb.append("</table>\n");
+
+		sb.append(String.format("<b>centroid = %.2f / %.2f = %.2f</b><br/>\n",
+				sumMomentArea, sumArea, centroid));
+
+		tabela = sb.toString();
 		return centroid;
 	}
 	
@@ -77,5 +102,10 @@ public class Centroid {
 		double c = centroid(x, y);
 		System.out.println("c=" + c);
 	}
+
+	public static String getTabela() {
+		return tabela;
+	}
+
 
 }

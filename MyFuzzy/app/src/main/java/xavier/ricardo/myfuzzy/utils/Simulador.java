@@ -137,6 +137,7 @@ public class Simulador {
             break;
         }
 
+        problema.setResultado(resultado);
         return resultado;
     }
 }

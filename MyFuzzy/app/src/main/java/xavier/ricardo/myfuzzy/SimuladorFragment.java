@@ -107,7 +107,7 @@ public class SimuladorFragment extends Fragment {
         llSaida.addView(tvVariavel);
 
         LinearLayout.LayoutParams paramsEdit = new LinearLayout.LayoutParams(
-                100,
+                200,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         EditText etValor = new EditText(getActivity());
         etValor.setLayoutParams(paramsEdit);
@@ -129,9 +129,9 @@ public class SimuladorFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 double crisp = Simulador.simula(problema);
-                int i = (int) Math. round(crisp);
+                int i = (int) Math.round(crisp);
                 sbValor.setProgress(i);
-                etValor.setText(String.valueOf(i));
+                etValor.setText(String.format("%.2f", crisp));
 
                 btnPassos.setVisibility(View.VISIBLE);
                 btnGrafico.setVisibility(View.VISIBLE);
@@ -142,11 +142,26 @@ public class SimuladorFragment extends Fragment {
         btnGrafico.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                double crisp = Simulador.simula(problema);
+                int i = (int) Math. round(crisp);
+                sbValor.setProgress(i);
+                etValor.setText(String.format("%.2f", crisp));
                 Intent intent = new Intent(getActivity(), GraficoResultActivity.class);
                 startActivity(intent);
             }
         });
 
+        btnPassos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                double crisp = Simulador.simula(problema);
+                int i = (int) Math. round(crisp);
+                sbValor.setProgress(i);
+                etValor.setText(String.format("%.2f", crisp));
+                Intent intent = new Intent(getActivity(), PassosActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

@@ -1,7 +1,6 @@
 package xavier.ricardo.myfuzzy;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.google.android.gms.ads.AdRequest;
@@ -30,15 +29,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, getResources().getString(R.string.desculpe), Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         Problema gorjeta = Gorjeta.inicializa();
 
@@ -74,8 +64,4 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void passos(View v) {
-        Intent intent = new Intent(this, PassosActivity.class);
-        startActivity(intent);
-    }
 }

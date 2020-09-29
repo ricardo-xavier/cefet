@@ -102,21 +102,17 @@ public class DrawView extends View {
             if (termo.getD() == null) {
                 // triangular
 
-                if (termo.getA() != termo.getB()) {
-                    y1 = 0f;
-                    y2 = height - yMargin * 2;
-                    x1 = termo.getA() / dv * dx;
-                    x2 = termo.getB() / dv * dx;
-                    canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
-                }
+                y1 = 0f;
+                y2 = height - yMargin * 2;
+                x1 = termo.getA() / dv * dx;
+                x2 = termo.getB() / dv * dx;
+                canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
 
-                if (termo.getB() != termo.getC()) {
-                    y1 = height - yMargin * 2;
-                    y2 = 0f;
-                    x1 = termo.getB() / dv * dx;
-                    x2 = termo.getC() / dv * dx;
-                    canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
-                }
+                y1 = height - yMargin * 2;
+                y2 = 0f;
+                x1 = termo.getB() / dv * dx;
+                x2 = termo.getC() / dv * dx;
+                canvas.drawLine(_x(x1), _y(y1), _x(x2), _y(y2), paint);
             }
 
             canvas.drawLine(_x(0), height + 50 * (c + 1), _x(100), height + 50 * (c + 1), paint);

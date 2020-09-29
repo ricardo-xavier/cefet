@@ -12,6 +12,7 @@ import xavier.ricardo.myfuzzy.tipos.Regra;
 import xavier.ricardo.myfuzzy.tipos.Termo;
 import xavier.ricardo.myfuzzy.tipos.TipoVariavel;
 import xavier.ricardo.myfuzzy.tipos.Variavel;
+import xavier.ricardo.myfuzzy.utils.Centroid;
 
 public class PassosActivity extends AppCompatActivity {
 
@@ -47,6 +48,9 @@ public class PassosActivity extends AppCompatActivity {
             html.append(String.format("w<sub>%d</sub> = %.2f<br/>",
                     r++, regra.getConsequente().getTermo().getPertinencia()));
         }
+
+        html.append("<h5>C&aacute;lculo do centroid:</h5>");
+        html.append(Centroid.getTabela());
 
         html.append("</body>");
         html.append("</html>");

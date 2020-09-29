@@ -7,6 +7,7 @@ public class Problema {
     private String nome;
     private List<Variavel> variaveis;
     private List<Regra> regras;
+    private double resultado;
 
     public Problema(String nome, List<Variavel> variaveis, List<Regra> regras) {
         this.nome = nome;
@@ -37,4 +38,13 @@ public class Problema {
     public void setRegras(List<Regra> regras) {
         this.regras = regras;
     }
+
+    public double getResultado() {
+        return resultado;
+    }
+
+    public void setResultado(double resultado) {
+        this.resultado = resultado;
+    }
+
 }

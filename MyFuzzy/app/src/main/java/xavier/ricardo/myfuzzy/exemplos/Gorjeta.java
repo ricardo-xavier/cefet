@@ -37,7 +37,7 @@ public class Gorjeta {
 
         int r = 1;
         for (Regra regra : problema.getRegras()) {
-            Log.i("BANCO", "popula regra:" + r);
+            //Log.i("BANCO", "popula regra:" + r);
             for (int a=0; a<regra.getAntecedentes().size(); a++) {
                 AntecedenteConsequenteDao.insert(db, problema.getNome(), r, "A", a+1,
                         regra.getAntecedentes().get(a), regra.getOperadores().get(a));
