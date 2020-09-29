@@ -15,11 +15,18 @@ import xavier.ricardo.myfuzzy.utils.DbHelper;
 
 public class ProblemaDao {
 
-    public static void insert(SQLiteDatabase db, Problema problema) {
+    public static long insert(SQLiteDatabase db, Problema problema) {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put("NOME", problema.getNome());
-        db.insert("PROBLEMAS", null, contentValues);
+        long registro = db.insert("PROBLEMAS", null, contentValues);
+        return registro;
+
+    }
+
+    public static void delete(SQLiteDatabase db, String nome) {
+
+        db.delete("PROBLEMAS", "NOME = ?", new String[] { nome } );
 
     }
 

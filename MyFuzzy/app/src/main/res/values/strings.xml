@@ -22,5 +22,13 @@
     <string name="grafico">Gráfico</string>
     <string name="simular">Simular</string>
     <string name="universo">Universo:</string>
+    <string name="problema_nao_informado">Problema não informado</string>
+    <string name="excluir_problema">Excluir o problema?</string>
+    <string name="confirmacao">Confirmação</string>
+    <string name="confirma">Confirma</string>
+    <string name="cancela">Cancela</string>
+    <string name="digite_problema">Entre com o nome do problema</string>
+    <string name="problema_adicionado">Problema adicionado com sucesso</string>
+    <string name="problema_excluido">Problema excluido com sucesso</string>
     <string name="desculpe">Desculpe. Opção não implementada. Aguarde as próximas versões.</string>
 </resources>
