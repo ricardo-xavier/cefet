@@ -11,6 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import xavier.ricardo.myfuzzy.tipos.Problema;
 
 public class ProblemaFragment extends Fragment {
@@ -56,6 +58,13 @@ public class ProblemaFragment extends Fragment {
         btnSimulador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                if (problema.getRegras().size() == 0) {
+                    Snackbar.make(getView(), getResources().getString(R.string.nenhuma_regra), Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    return;
+                }
+
                 NavHostFragment.findNavController(ProblemaFragment.this)
                         .navigate(R.id.ProblemaParaSimulador);
             }

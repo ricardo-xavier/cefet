@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
     tools:context=".NovoProblemaActivity">
 
     <EditText
@@ -16,7 +18,7 @@
         android:layout_marginBottom="32dp"
         android:ems="10"
         android:hint="@string/digite_problema"
-        android:inputType="textPersonName"  />
+        android:inputType="textPersonName" />
 
     <LinearLayout
         android:layout_width="match_parent"
