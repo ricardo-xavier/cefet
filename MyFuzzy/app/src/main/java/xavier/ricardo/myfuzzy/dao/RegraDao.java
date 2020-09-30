@@ -44,6 +44,7 @@ public class RegraDao {
                 operadores = new ArrayList<>();
                 consequente = new AntecedenteConsequente();
                 regra = new Regra(antecedentes, operadores, consequente);
+                regra.setId(r);
                 regras.add(regra);
             }
             String tipo = res.getString(res.getColumnIndex("TIPO"));
