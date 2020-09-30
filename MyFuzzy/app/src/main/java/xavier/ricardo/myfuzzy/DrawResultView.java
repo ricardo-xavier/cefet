@@ -135,7 +135,7 @@ public class DrawResultView extends View {
         // delimita as areas dos termos
         paint.setStrokeWidth(2);
         paint.setStyle(Paint.Style.STROKE);
-        int[] colors = { Color.RED, Color.rgb(0, 128, 0), Color.BLUE } ;
+        int[] colors = { Color.RED, Color.rgb(0, 128, 0), Color.BLUE, Color.MAGENTA, Color.GRAY } ;
 
         int c = 0;
         for (Termo termo : variavel.getTermos()) {

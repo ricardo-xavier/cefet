@@ -42,10 +42,12 @@
     <string name="problema_adicionado">Problema adicionado com sucesso</string>
     <string name="variavel_adicionada">Variável adicionada com sucesso</string>
     <string name="termo_adicionado">Termo adicionado com sucesso</string>
+    <string name="regra_adicionada">Regra adicionada com sucesso</string>
 
     <string name="problema_excluido">Problema excluido com sucesso</string>
     <string name="variavel_excluida">Variável excluida com sucesso</string>
     <string name="termo_excluido">Termo excluido com sucesso</string>
+    <string name="regra_excluida">Regra excluida com sucesso</string>
 
     <string name="nenhuma_regra">Nenhuma regra definida</string>
     <string name="desculpe">Desculpe. Opção não implementada. Aguarde as próximas versões.</string>
@@ -55,4 +57,14 @@
     <string name="consequente">Consequente</string>
     <string name="fim_maior_inicio">O valor final deve ser maior que o inicial</string>
     <string name="abc">Entre com A &lt;= B &lt;= C</string>
+
+    <string name="defina">Defina pelo menos um antecedente e um consequente antes de definir regras</string>
+
+    <string name="se">SE</string>
+    <string name="eh">É</string>
+    <string name="e">E</string>
+    <string name="ou">OU</string>
+    <string name="entao">ENTÃO</string>
+    <string name="advariavel">Variável</string>
+    <string name="adtermo">Termo</string>
 </resources>

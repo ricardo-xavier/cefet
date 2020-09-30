@@ -35,16 +35,14 @@ public class Gorjeta {
 
         }
 
-        int r = 1;
         for (Regra regra : problema.getRegras()) {
             //Log.i("BANCO", "popula regra:" + r);
             for (int a=0; a<regra.getAntecedentes().size(); a++) {
-                AntecedenteConsequenteDao.insert(db, problema.getNome(), r, "A", a+1,
+                AntecedenteConsequenteDao.insert(db, problema.getNome(), regra.getId(), "A", a+1,
                         regra.getAntecedentes().get(a), regra.getOperadores().get(a));
             }
-            AntecedenteConsequenteDao.insert(db, problema.getNome(), r, "C", 1,
+            AntecedenteConsequenteDao.insert(db, problema.getNome(), regra.getId(), "C", 1,
                     regra.getConsequente(), null);
-            r++;
         }
 
     }
@@ -83,6 +81,7 @@ public class Gorjeta {
         operadores1.add(null);
         AntecedenteConsequente consequente1 = new AntecedenteConsequente(gorjeta, gorjeta.getTermos().get(2));
         Regra r1 = new Regra(antecedentes1, operadores1, consequente1);
+        r1.setId(1);
         regras.add(r1);
 
         List<AntecedenteConsequente> antecedentes2 = new ArrayList<>();
@@ -92,6 +91,7 @@ public class Gorjeta {
         operadores2.add(null);
         AntecedenteConsequente consequente2 = new AntecedenteConsequente(gorjeta, gorjeta.getTermos().get(1));
         Regra r2 = new Regra(antecedentes2, operadores2, consequente2);
+        r2.setId(2);
         regras.add(r2);
 
         List<AntecedenteConsequente> antecedentes3 = new ArrayList<>();
@@ -104,6 +104,7 @@ public class Gorjeta {
         operadores3.add(null);
         AntecedenteConsequente consequente3 = new AntecedenteConsequente(gorjeta, gorjeta.getTermos().get(0));
         Regra r3 = new Regra(antecedentes3, operadores3, consequente3);
+        r3.setId(3);
         regras.add(r3);
 
         Problema problema = new Problema("gorjeta", variaveis, regras);

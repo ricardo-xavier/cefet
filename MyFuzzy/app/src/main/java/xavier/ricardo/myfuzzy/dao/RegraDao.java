@@ -91,4 +91,13 @@ public class RegraDao {
 
         return regras;
     }
+
+
+    public static void delete(SQLiteDatabase db, String problema, int regra) {
+
+        db.delete("ANTECEDENTES_CONSEQUENTES", "PROBLEMA = ? and REGRA = ?",
+                new String[] { problema, String.valueOf(regra) } );
+
+    }
+
 }

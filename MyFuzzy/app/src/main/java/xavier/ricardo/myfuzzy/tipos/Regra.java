@@ -9,6 +9,7 @@ public class Regra {
     private AntecedenteConsequente consequente;
     private String exprAntecedente;
     private String exprConsequente;
+    private int id;
 
     public Regra(List<AntecedenteConsequente> antecedentes, List<Operador> operadores, AntecedenteConsequente consequente) {
         this.antecedentes = antecedentes;
@@ -71,5 +72,12 @@ public class Regra {
         this.exprConsequente = exprConsequente;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+    
 }

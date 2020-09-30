@@ -14,6 +14,8 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.google.android.material.snackbar.Snackbar;
 
 import xavier.ricardo.myfuzzy.tipos.Problema;
+import xavier.ricardo.myfuzzy.tipos.TipoVariavel;
+import xavier.ricardo.myfuzzy.tipos.Variavel;
 
 public class ProblemaFragment extends Fragment {
 
@@ -49,6 +51,22 @@ public class ProblemaFragment extends Fragment {
         btnRegras.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                boolean antecedente = false;
+                boolean consequente = false;
+                for (Variavel variavel : problema.getVariaveis()) {
+                    if (variavel.getTipo() == TipoVariavel.ANTECEDENTE) {
+                        antecedente = true;
+                    } else {
+                        consequente = true;
+                    }
+                }
+                if (!antecedente || !consequente) {
+                    Snackbar.make(getView(), getResources().getString(R.string.defina), Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                    return;
+                }
+
                 NavHostFragment.findNavController(ProblemaFragment.this)
                         .navigate(R.id.ProblemaParaRegras);
             }

@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.Map;
 
 import xavier.ricardo.myfuzzy.dao.TermoDao;
-import xavier.ricardo.myfuzzy.dao.VariavelDao;
 import xavier.ricardo.myfuzzy.tipos.Problema;
 import xavier.ricardo.myfuzzy.tipos.Termo;
 import xavier.ricardo.myfuzzy.tipos.Variavel;
@@ -63,6 +62,7 @@ public class TermosFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), NovoTermoActivity.class);
                 intent.putExtra("problema", problema.getNome());
                 intent.putExtra("variavel", nomeVariavel);
+                intent.putExtra("fim", variavel.getFim());
                 startActivityForResult(intent, 1);
             }
         });
@@ -155,6 +155,9 @@ public class TermosFragment extends Fragment {
                 new String[] { "termo", "detalhes" },
                 new int[] { android.R.id.text1, android.R.id.text2 });
         lvTermos.setAdapter(adapter);
+
+        FloatingActionButton fab = getView().findViewById(R.id.fab);
+        fab.setVisibility(termosBd.size() < 5 ? View.VISIBLE : View.INVISIBLE);
 
     }
 

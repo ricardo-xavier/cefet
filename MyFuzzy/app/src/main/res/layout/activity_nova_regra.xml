@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".NovaRegraActivity">
+
+    <EditText
+        android:id="@+id/edtExpressao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:gravity="start|top"
+        android:inputType="textMultiLine"
+        android:enabled="false"
+        android:lines="5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSe"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:onClick="se"
+            android:layout_marginRight="10dp"
+            android:text="@string/se" />
+
+        <Button
+            android:id="@+id/btnEh"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:onClick="eh"
+            android:layout_marginRight="10dp"
+            android:text="@string/eh" />
+
+        <Button
+            android:id="@+id/btnOu"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:onClick="ou"
+            android:layout_marginRight="10dp"
+            android:text="@string/ou" />
+
+        <Button
+            android:id="@+id/btnE"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:onClick="e"
+            android:layout_marginRight="10dp"
+            android:text="@string/e" />
+
+        <Button
+            android:id="@+id/btnEntao"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:onClick="entao"
+            android:text="@string/entao" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spVariavel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnVariavel"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="adVar"
+            android:text="@string/advariavel" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/spTermo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/btnTermo"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="adTermo"
+            android:text="@string/adtermo" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="32dp"
+        android:paddingTop="32dp"
+        android:paddingRight="32dp"
+        android:paddingBottom="32dp">
+
+        <Button
+            android:id="@+id/btnCancela"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="32dp"
+            android:layout_weight="1"
+            android:background="#F44336"
+            android:onClick="cancela"
+            android:text="@string/cancela"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/btnConfirma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#4CAF50"
+            android:onClick="confirma"
+            android:text="@string/confirma"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+</LinearLayout>

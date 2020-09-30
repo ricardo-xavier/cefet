@@ -92,7 +92,7 @@ public class DrawView extends View {
         }
 
         paint.setStrokeWidth(2);
-        int[] colors = { Color.RED, Color.rgb(0, 128, 0), Color.BLUE } ;
+        int[] colors = { Color.RED, Color.rgb(0, 128, 0), Color.BLUE, Color.MAGENTA, Color.GRAY } ;
 
         int c = 0;
         for (Termo termo : variavel.getTermos()) {

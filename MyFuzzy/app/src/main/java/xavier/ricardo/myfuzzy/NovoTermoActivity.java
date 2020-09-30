@@ -35,9 +35,11 @@ public class NovoTermoActivity extends AppCompatActivity {
         Intent intent = getIntent();
         nomeProblema = intent.getStringExtra("problema");
         nomeVariavel = intent.getStringExtra("variavel");
+        int fim = intent.getIntExtra("fim", 0);
 
         EditText edtA = findViewById(R.id.edtA);
         SeekBar sbA = findViewById(R.id.sbA);
+        sbA.setMax(fim);
         sbA.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             public void onStopTrackingTouch(SeekBar arg0) {
@@ -53,6 +55,7 @@ public class NovoTermoActivity extends AppCompatActivity {
 
         EditText edtB = findViewById(R.id.edtB);
         SeekBar sbB = findViewById(R.id.sbB);
+        sbB.setMax(fim);
         sbB.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             public void onStopTrackingTouch(SeekBar arg0) {
@@ -68,6 +71,7 @@ public class NovoTermoActivity extends AppCompatActivity {
 
         EditText edtC = findViewById(R.id.edtC);
         SeekBar sbC = findViewById(R.id.sbC);
+        sbC.setMax(fim);
         sbC.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             public void onStopTrackingTouch(SeekBar arg0) {
