@@ -68,7 +68,7 @@ public class NovoTermoActivity extends AppCompatActivity {
 
         EditText edtC = findViewById(R.id.edtC);
         SeekBar sbC = findViewById(R.id.sbC);
-        sbA.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        sbC.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             public void onStopTrackingTouch(SeekBar arg0) {
             }

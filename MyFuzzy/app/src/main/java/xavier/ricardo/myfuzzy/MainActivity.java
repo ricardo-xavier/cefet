@@ -1,25 +1,25 @@
 package xavier.ricardo.myfuzzy;
 
-import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
+import android.util.Log;
 
 import android.view.Menu;
 import android.view.MenuItem;
 
 import xavier.ricardo.myfuzzy.exemplos.Gorjeta;
 import xavier.ricardo.myfuzzy.tipos.Problema;
-import xavier.ricardo.myfuzzy.utils.DbHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,10 +32,46 @@ public class MainActivity extends AppCompatActivity {
 
         Problema gorjeta = Gorjeta.inicializa();
 
-        MobileAds.initialize(this, "ca-app-pub-0381609228541841~5786112363");
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+                Log.i("ADMOB", "onInitializationComplete:" + initializationStatus.toString());
+            }
+        });
+
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                Log.i("ADMOB", "onAdLoaded");
+            }
+
+            @Override
+            public void onAdFailedToLoad(LoadAdError adError) {
+                Log.i("ADMOB", "onAdFailedToLoad:" + adError.getCode());
+                Log.i("ADMOB", "onAdFailedToLoad:" + adError.getMessage());
+                Log.i("ADMOB", "onAdFailedToLoad:" + adError.getCause());
+            }
+
+            @Override
+            public void onAdOpened() {
+            }
+
+            @Override
+            public void onAdClicked() {
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+            }
+
+            @Override
+            public void onAdClosed() {
+            }
+        });
 
     }
 
