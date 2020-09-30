@@ -22,20 +22,37 @@
     <string name="grafico">Gráfico</string>
     <string name="simular">Simular</string>
     <string name="universo">Universo:</string>
+
     <string name="problema_nao_informado">Problema não informado</string>
     <string name="variavel_nao_informada">Variável não informada</string>
+    <string name="termo_nao_informado">Termo não informado</string>
+
     <string name="excluir_problema">Excluir o problema?</string>
+    <string name="excluir_variavel">Excluir a variável?</string>
+    <string name="excluir_termo">Excluir o termo?</string>
+
     <string name="confirmacao">Confirmação</string>
     <string name="confirma">Confirma</string>
     <string name="cancela">Cancela</string>
+
     <string name="digite_problema">Entre com o nome do problema</string>
     <string name="digite_variavel">Entre com o nome da variável</string>
+    <string name="digite_termo">Entre com o nome do termo</string>
+
     <string name="problema_adicionado">Problema adicionado com sucesso</string>
+    <string name="variavel_adicionada">Variável adicionada com sucesso</string>
+    <string name="termo_adicionado">Termo adicionado com sucesso</string>
+
     <string name="problema_excluido">Problema excluido com sucesso</string>
+    <string name="variavel_excluida">Variável excluida com sucesso</string>
+    <string name="termo_excluido">Termo excluido com sucesso</string>
+
     <string name="nenhuma_regra">Nenhuma regra definida</string>
     <string name="desculpe">Desculpe. Opção não implementada. Aguarde as próximas versões.</string>
     <string name="inicio">Universo: Início</string>
     <string name="fim">Universo: Fim</string>
     <string name="antecedente">Antecedente</string>
     <string name="consequente">Consequente</string>
+    <string name="fim_maior_inicio">O valor final deve ser maior que o inicial</string>
+    <string name="abc">Entre com A &lt;= B &lt;= C</string>
 </resources>

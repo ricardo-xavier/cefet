@@ -32,10 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         Problema gorjeta = Gorjeta.inicializa();
 
-        // ca-app-pub-3940256099942544/6300978111 teste
-        // ca-app-pub-0381609228541841/9233128121 soft
-        // ca-app-pub-0381609228541841~8494761522 desenvolvedor
-        MobileAds.initialize(this, "ca-app-pub-0381609228541841~8494761522");
+        MobileAds.initialize(this, "ca-app-pub-0381609228541841~5786112363");
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);

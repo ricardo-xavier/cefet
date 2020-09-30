@@ -7,15 +7,13 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import xavier.ricardo.myfuzzy.tipos.Problema;
-import xavier.ricardo.myfuzzy.tipos.Regra;
 import xavier.ricardo.myfuzzy.tipos.Termo;
 import xavier.ricardo.myfuzzy.tipos.TipoVariavel;
 import xavier.ricardo.myfuzzy.tipos.Variavel;
 
 public class VariavelDao {
 
-    public static void insert(SQLiteDatabase db, String problema, Variavel variavel) {
+    public static long insert(SQLiteDatabase db, String problema, Variavel variavel) {
 
         ContentValues contentValues = new ContentValues();
         contentValues = new ContentValues();
@@ -24,7 +22,20 @@ public class VariavelDao {
         contentValues.put("TIPO", variavel.getTipo() == TipoVariavel.ANTECEDENTE ? "A" : "C");
         contentValues.put("INICIO", variavel.getInicio());
         contentValues.put("FIM", variavel.getFim());
-        db.insert("VARIAVEIS", null, contentValues);
+        long registro = db.insert("VARIAVEIS", null, contentValues);
+        return registro;
+    }
+
+    public static void delete(SQLiteDatabase db, String problema, String nome) {
+
+        TermoDao.delete(db, problema, nome);
+        db.delete("VARIAVEIS", "PROBLEMA = ? and NOME = ?", new String[] { problema, nome } );
+
+    }
+
+    public static void delete(SQLiteDatabase db, String problema) {
+
+        db.delete("VARIAVEIS", "PROBLEMA = ?", new String[] { problema } );
 
     }
 

@@ -11,7 +11,7 @@ import xavier.ricardo.myfuzzy.tipos.Termo;
 
 public class TermoDao {
 
-    public static void insert(SQLiteDatabase db, String problema, String variavel, Termo termo) {
+    public static long insert(SQLiteDatabase db, String problema, String variavel, Termo termo) {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put("PROBLEMA", problema);
@@ -21,7 +21,29 @@ public class TermoDao {
         contentValues.put("B", termo.getB());
         contentValues.put("C", termo.getC());
         contentValues.put("D", termo.getD());
-        db.insert("TERMOS", null, contentValues);
+        long registro = db.insert("TERMOS", null, contentValues);
+        return registro;
+
+    }
+
+    public static void delete(SQLiteDatabase db, String problema, String variavel, String nome) {
+
+        db.delete("TERMOS", "PROBLEMA = ? and VARIAVEL = ? and NOME = ?",
+                new String[] { problema, variavel, nome } );
+
+    }
+
+    public static void delete(SQLiteDatabase db, String problema, String variavel) {
+
+        db.delete("TERMOS", "PROBLEMA = ? and VARIAVEL = ?",
+                new String[] { problema, variavel } );
+
+    }
+
+    public static void delete(SQLiteDatabase db, String problema) {
+
+        db.delete("TERMOS", "PROBLEMA = ?",
+                new String[] { problema } );
 
     }
 

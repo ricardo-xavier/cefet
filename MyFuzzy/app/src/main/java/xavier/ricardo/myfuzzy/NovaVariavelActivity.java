@@ -14,7 +14,10 @@ import android.widget.SeekBar;
 import com.google.android.material.snackbar.Snackbar;
 
 import xavier.ricardo.myfuzzy.dao.ProblemaDao;
+import xavier.ricardo.myfuzzy.dao.VariavelDao;
 import xavier.ricardo.myfuzzy.tipos.Problema;
+import xavier.ricardo.myfuzzy.tipos.TipoVariavel;
+import xavier.ricardo.myfuzzy.tipos.Variavel;
 import xavier.ricardo.myfuzzy.utils.DbHelper;
 
 public class NovaVariavelActivity extends AppCompatActivity {
@@ -23,6 +26,15 @@ public class NovaVariavelActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nova_variavel);
+
+        Problema problema = ProblemasFragment.getProblema();
+        for (Variavel variavel : problema.getVariaveis()) {
+            if (variavel.getTipo() == TipoVariavel.CONSEQUENTE) {
+                RadioButton rbConsequente = findViewById(R.id.rbConsequente);
+                rbConsequente.setEnabled(false);
+                break;
+            }
+        }
 
         EditText edtInicio = findViewById(R.id.edtInicio);
         SeekBar sbInicio = findViewById(R.id.sbInicio);
@@ -56,7 +68,6 @@ public class NovaVariavelActivity extends AppCompatActivity {
 
     }
 
-
     public void cancela(View v) {
         setResult(Activity.RESULT_CANCELED);
         finish();
@@ -73,12 +84,22 @@ public class NovaVariavelActivity extends AppCompatActivity {
             return;
         }
 
-        //TODO
-        /*
+        SeekBar sbInicio = findViewById(R.id.sbInicio);
+        SeekBar sbFim = findViewById(R.id.sbFim);
+        if (sbFim.getProgress() <= sbInicio.getProgress()) {
+            Snackbar.make(edtVariavel, getResources().getString(R.string.fim_maior_inicio), Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            sbFim.requestFocus();
+            return;
+        }
+
+        RadioButton rbConsequente = findViewById(R.id.rbConsequente);
         DbHelper mDbHelper = new DbHelper(this);
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
-        Problema problema = new Problema(nome, null, null);
-        long registro = ProblemaDao.insert(db, problema);
+        Variavel variavel = new Variavel(nome, sbInicio.getProgress(), sbFim.getProgress(),
+                rbConsequente.isChecked() ? TipoVariavel.CONSEQUENTE : TipoVariavel.ANTECEDENTE);
+        Problema problema = ProblemasFragment.getProblema();
+        long registro = VariavelDao.insert(db, problema.getNome(), variavel);
         db.close();
 
         if (registro != -1) {
@@ -86,7 +107,6 @@ public class NovaVariavelActivity extends AppCompatActivity {
         } else {
             setResult(Activity.RESULT_CANCELED);
         }
-        */
         finish();
     }
 

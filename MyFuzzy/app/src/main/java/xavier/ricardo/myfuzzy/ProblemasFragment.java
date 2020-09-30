@@ -21,11 +21,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import xavier.ricardo.myfuzzy.dao.ProblemaDao;
-import xavier.ricardo.myfuzzy.exemplos.Gorjeta;
 import xavier.ricardo.myfuzzy.tipos.Problema;
 import xavier.ricardo.myfuzzy.utils.DbHelper;
 

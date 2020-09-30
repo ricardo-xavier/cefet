@@ -26,6 +26,8 @@ public class ProblemaDao {
 
     public static void delete(SQLiteDatabase db, String nome) {
 
+        TermoDao.delete(db, nome);
+        VariavelDao.delete(db, nome);
         db.delete("PROBLEMAS", "NOME = ?", new String[] { nome } );
 
     }

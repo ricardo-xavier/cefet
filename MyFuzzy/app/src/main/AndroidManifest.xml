@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NovaVariavelActivity"></activity>
+        <activity android:name=".NovoTermoActivity"></activity>
+        <activity android:name=".NovaVariavelActivity" />
         <activity android:name=".NovoProblemaActivity" />
         <activity android:name=".GraficoResultActivity" />
         <activity android:name=".PassosActivity" />
