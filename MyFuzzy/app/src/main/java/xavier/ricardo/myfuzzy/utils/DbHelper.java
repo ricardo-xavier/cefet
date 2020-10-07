@@ -11,7 +11,6 @@ import xavier.ricardo.myfuzzy.tipos.Problema;
 
 public class DbHelper extends SQLiteOpenHelper {
 
-
     public DbHelper(@Nullable Context context) {
         super(context, "myfuzzy", null, 1);
     }

@@ -10,8 +10,6 @@ import android.widget.EditText;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import java.util.List;
-
 import xavier.ricardo.myfuzzy.dao.ProblemaDao;
 import xavier.ricardo.myfuzzy.tipos.Problema;
 import xavier.ricardo.myfuzzy.utils.DbHelper;

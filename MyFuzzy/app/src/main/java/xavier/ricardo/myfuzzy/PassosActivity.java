@@ -28,7 +28,7 @@ public class PassosActivity extends AppCompatActivity {
         html.append("<html>");
         html.append("<body>");
 
-        html.append("<h5>Pertin&eacute;ncia:</h5>");
+        html.append("<h5>" + MainActivity.getStringResources().getString(R.string.pertinencia) + "</h5>");
         for (Variavel variavel : problema.getVariaveis()) {
 
             if (variavel.getTipo() == TipoVariavel.CONSEQUENTE) {
@@ -41,7 +41,7 @@ public class PassosActivity extends AppCompatActivity {
             }
         }
 
-        html.append("<h5>Regras:</h5>");
+        html.append("<h5>" + MainActivity.getStringResources().getString(R.string.regras_label) + "</h5>");
 
         int r = 1;
         for (Regra regra : problema.getRegras()) {
@@ -49,7 +49,7 @@ public class PassosActivity extends AppCompatActivity {
                     r++, regra.getConsequente().getTermo().getPertinencia()));
         }
 
-        html.append("<h5>C&aacute;lculo do centroid:</h5>");
+        html.append("<h5>Centroid:</h5>");
         html.append(Centroid.getTabela());
 
         html.append("</body>");

@@ -2,6 +2,9 @@ package xavier.ricardo.myfuzzy.tipos;
 
 import java.util.List;
 
+import xavier.ricardo.myfuzzy.MainActivity;
+import xavier.ricardo.myfuzzy.R;
+
 public class Regra {
 
     private List<AntecedenteConsequente> antecedentes;
@@ -46,10 +49,14 @@ public class Regra {
             StringBuilder expr = new StringBuilder();
             for (int a=0; a<antecedentes.size(); a++) {
                 AntecedenteConsequente antecedente = antecedentes.get(a);
-                expr.append("SE " + antecedente.getVariavel().getNome() + " é " + antecedente.getTermo().getNome());
+                String _se = MainActivity.getStringResources().getString(R.string.se).toUpperCase() + " ";
+                String _eh = " " + MainActivity.getStringResources().getString(R.string.eh).toUpperCase() + " ";
+                String _ou = " " + MainActivity.getStringResources().getString(R.string.ou).toUpperCase() + " ";
+                String _e  = " " + MainActivity.getStringResources().getString(R.string.e).toUpperCase() + " ";
+                expr.append(_se + antecedente.getVariavel().getNome() + _eh + antecedente.getTermo().getNome());
                 Operador operador = operadores.get(a);
                 if (operador != null) {
-                    expr.append(operador == Operador.OR ? " OU " : " E ");
+                    expr.append(operador == Operador.OR ? _ou : _e);
                 }
             }
             exprAntecedente = expr.toString();
@@ -63,7 +70,9 @@ public class Regra {
 
     public String getExprConsequente() {
         if ((exprConsequente == null) && (consequente != null)) {
-            exprConsequente = " ENTÃO " + consequente.getVariavel().getNome() + " é " + consequente.getTermo().getNome();
+            String _entao = MainActivity.getStringResources().getString(R.string.entao).toUpperCase() + " ";
+            String _eh = " " + MainActivity.getStringResources().getString(R.string.eh).toUpperCase() + " ";
+            exprConsequente = _entao + consequente.getVariavel().getNome() + _eh + consequente.getTermo().getNome();
         }
         return exprConsequente;
     }

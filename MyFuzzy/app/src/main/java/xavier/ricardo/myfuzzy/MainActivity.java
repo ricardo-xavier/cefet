@@ -1,5 +1,6 @@
 package xavier.ricardo.myfuzzy;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 
 import com.google.android.gms.ads.AdListener;
@@ -23,9 +24,12 @@ import xavier.ricardo.myfuzzy.tipos.Problema;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static Resources resources;;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        resources = getResources();
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -35,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
-                Log.i("ADMOB", "onInitializationComplete:" + initializationStatus.toString());
+                Log.i("ADMOB", "onInitializationComplete");
             }
         });
 
@@ -95,6 +99,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static Resources getStringResources() {
+        return resources;
     }
 
 }

@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import xavier.ricardo.myfuzzy.dao.AntecedenteConsequenteDao;
-import xavier.ricardo.myfuzzy.dao.RegraDao;
 import xavier.ricardo.myfuzzy.tipos.AntecedenteConsequente;
 import xavier.ricardo.myfuzzy.tipos.Operador;
 import xavier.ricardo.myfuzzy.tipos.Problema;
@@ -114,7 +113,7 @@ public class NovaRegraActivity extends AppCompatActivity {
     }
 
     public void se(View v) {
-        adiciona("SE");
+        adiciona(MainActivity.getStringResources().getString(R.string.se).toUpperCase());
         desativa();
         ativa(btnVariavel);
         Spinner spVariavel = findViewById(R.id.spVariavel);
@@ -126,7 +125,7 @@ public class NovaRegraActivity extends AppCompatActivity {
     }
 
     public void eh(View v) {
-        adiciona("É");
+        adiciona(MainActivity.getStringResources().getString(R.string.eh).toUpperCase());
         desativa();
         ativa(btnTermo);
         for (Variavel variavel : problema.getVariaveis()) {
@@ -148,7 +147,7 @@ public class NovaRegraActivity extends AppCompatActivity {
     public void e(View v) {
         antecedentes.add(antecedente);
         operadores.add(Operador.AND);
-        adiciona("E");
+        adiciona(MainActivity.getStringResources().getString(R.string.e).toUpperCase());
         desativa();
         ativa(btnVariavel);
     }
@@ -156,7 +155,7 @@ public class NovaRegraActivity extends AppCompatActivity {
     public void ou(View v) {
         antecedentes.add(antecedente);
         operadores.add(Operador.OR);
-        adiciona("OU");
+        adiciona(MainActivity.getStringResources().getString(R.string.ou).toUpperCase());
         desativa();
         ativa(btnVariavel);
     }
@@ -164,7 +163,7 @@ public class NovaRegraActivity extends AppCompatActivity {
     public void entao(View v) {
         antecedentes.add(antecedente);
         operadores.add(null);
-        adiciona("ENTÃO");
+        adiciona(MainActivity.getStringResources().getString(R.string.entao).toUpperCase());
         desativa();
         ativa(btnVariavel);
         Spinner spVariavel = findViewById(R.id.spVariavel);
@@ -182,7 +181,7 @@ public class NovaRegraActivity extends AppCompatActivity {
         if (pos < 0) {
             return;
         }
-        if (edtExpressao.getText().toString().contains("ENTÃO"))  {
+        if (edtExpressao.getText().toString().contains(MainActivity.getStringResources().getString(R.string.entao).toUpperCase()))  {
             nomeVariavel = nomeConsequente;
         } else {
             nomeVariavel = nomesAntecedentes.get(pos);
@@ -194,7 +193,7 @@ public class NovaRegraActivity extends AppCompatActivity {
                 break;
             }
         }
-        if (edtExpressao.getText().toString().contains("ENTÃO"))  {
+        if (edtExpressao.getText().toString().contains(MainActivity.getStringResources().getString(R.string.entao).toUpperCase()))  {
             consequente.setVariavel(variavel);
         } else {
             antecedente.setVariavel(variavel);
@@ -212,7 +211,7 @@ public class NovaRegraActivity extends AppCompatActivity {
         }
         String nomeTermo = termos.get(pos);
         AntecedenteConsequente ac = null;
-        if (edtExpressao.getText().toString().contains("ENTÃO"))  {
+        if (edtExpressao.getText().toString().contains(MainActivity.getStringResources().getString(R.string.entao).toUpperCase()))  {
             ac = consequente;
         } else {
             ac = antecedente;
@@ -228,7 +227,7 @@ public class NovaRegraActivity extends AppCompatActivity {
         ac.setTermo(termo);
         adiciona(nomeTermo);
         desativa();
-        if (edtExpressao.getText().toString().contains("ENTÃO")) {
+        if (edtExpressao.getText().toString().contains(MainActivity.getStringResources().getString(R.string.entao).toUpperCase())) {
             Button btnConfirma = findViewById(R.id.btnConfirma);
             btnConfirma.setVisibility(View.VISIBLE);
         } else {

@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Simulador Fuzzy</string>
-    <string name="action_settings">Settings</string>
 
     <!-- Strings used for fragments for navigation -->
     <string name="problemas_label">Problemas</string>
@@ -10,6 +9,7 @@
     <string name="regras_label">Regras</string>
     <string name="simulador_label">Simulador</string>
     <string name="grafico_variavel_label">Gráfico</string>
+    <string name="pertinencia">Pertinencia</string>
 
     <string name="problemas">Problemas</string>
     <string name="passos">Passos</string>
@@ -58,6 +58,22 @@
     <string name="fim_maior_inicio">O valor final deve ser maior que o inicial</string>
     <string name="abc">Entre com A &lt;= B &lt;= C</string>
 
+
+    <string name="servico">servico</string>
+    <string name="ruim">ruim</string>
+    <string name="aceitavel">aceitavel</string>
+    <string name="excelente">excelente</string>
+
+    <string name="comida">comida</string>
+    <string name="pessima">pessima</string>
+    <string name="comivel">comivel</string>
+    <string name="deliciosa">deliciosa</string>
+
+    <string name="gorjeta">gorjeta</string>
+    <string name="baixa">baixa</string>
+    <string name="media">media</string>
+    <string name="alta">alta</string>
+
     <string name="defina">Defina pelo menos um antecedente e um consequente antes de definir regras</string>
 
     <string name="se">SE</string>
@@ -67,4 +83,5 @@
     <string name="entao">ENTÃO</string>
     <string name="advariavel">Variável</string>
     <string name="adtermo">Termo</string>
+    <string name="action_settings">Settings</string>
 </resources>

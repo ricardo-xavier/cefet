@@ -7,11 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-import xavier.ricardo.myfuzzy.exemplos.Gorjeta;
 import xavier.ricardo.myfuzzy.tipos.Problema;
 import xavier.ricardo.myfuzzy.tipos.Regra;
 import xavier.ricardo.myfuzzy.tipos.Variavel;
-import xavier.ricardo.myfuzzy.utils.DbHelper;
 
 public class ProblemaDao {
 

@@ -1,12 +1,13 @@
 package xavier.ricardo.myfuzzy.exemplos;
 
-import android.content.ContentValues;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import xavier.ricardo.myfuzzy.MainActivity;
+import xavier.ricardo.myfuzzy.R;
 import xavier.ricardo.myfuzzy.dao.AntecedenteConsequenteDao;
 import xavier.ricardo.myfuzzy.dao.ProblemaDao;
 import xavier.ricardo.myfuzzy.dao.TermoDao;
@@ -36,7 +37,6 @@ public class Gorjeta {
         }
 
         for (Regra regra : problema.getRegras()) {
-            //Log.i("BANCO", "popula regra:" + r);
             for (int a=0; a<regra.getAntecedentes().size(); a++) {
                 AntecedenteConsequenteDao.insert(db, problema.getNome(), regra.getId(), "A", a+1,
                         regra.getAntecedentes().get(a), regra.getOperadores().get(a));
@@ -49,24 +49,37 @@ public class Gorjeta {
 
     public static Problema inicializa() {
 
+        String _gorjeta = MainActivity.getStringResources().getString(R.string.gorjeta);
+        String _servico = MainActivity.getStringResources().getString(R.string.servico);
+        String _comida = MainActivity.getStringResources().getString(R.string.comida);
+        String _ruim = MainActivity.getStringResources().getString(R.string.ruim);
+        String _aceitavel = MainActivity.getStringResources().getString(R.string.aceitavel);
+        String _excelente = MainActivity.getStringResources().getString(R.string.excelente);
+        String _pessima = MainActivity.getStringResources().getString(R.string.pessima);
+        String _comivel = MainActivity.getStringResources().getString(R.string.comivel);
+        String _deliciosa = MainActivity.getStringResources().getString(R.string.deliciosa);
+        String _baixa = MainActivity.getStringResources().getString(R.string.baixa);
+        String _media = MainActivity.getStringResources().getString(R.string.media);
+        String _alta = MainActivity.getStringResources().getString(R.string.alta);
+
         List<Variavel> variaveis = new ArrayList<>();
 
-        Variavel comida = new Variavel("comida", 0, 10, TipoVariavel.ANTECEDENTE);
-        comida.getTermos().add(new Termo("pessima", 0, 0, 5));
-        comida.getTermos().add(new Termo("comivel", 0, 5, 10));
-        comida.getTermos().add(new Termo("deliciosa", 5, 10, 10));
+        Variavel comida = new Variavel(_comida, 0, 10, TipoVariavel.ANTECEDENTE);
+        comida.getTermos().add(new Termo(_pessima, 0, 0, 5));
+        comida.getTermos().add(new Termo(_comivel, 0, 5, 10));
+        comida.getTermos().add(new Termo(_deliciosa, 5, 10, 10));
         variaveis.add(comida);
 
-        Variavel servico = new Variavel("servico", 0, 10, TipoVariavel.ANTECEDENTE);
-        servico.getTermos().add(new Termo("ruim", 0, 0, 5));
-        servico.getTermos().add(new Termo("aceitavel", 0, 5, 10));
-        servico.getTermos().add(new Termo("excelente", 5, 10, 10));
+        Variavel servico = new Variavel(_servico, 0, 10, TipoVariavel.ANTECEDENTE);
+        servico.getTermos().add(new Termo(_ruim, 0, 0, 5));
+        servico.getTermos().add(new Termo(_aceitavel, 0, 5, 10));
+        servico.getTermos().add(new Termo(_excelente, 5, 10, 10));
         variaveis.add(servico);
 
-        Variavel gorjeta = new Variavel("gorjeta", 0, 24, TipoVariavel.CONSEQUENTE);
-        gorjeta.getTermos().add(new Termo("baixa", 0, 0, 12));
-        gorjeta.getTermos().add(new Termo("media", 0, 12, 24));
-        gorjeta.getTermos().add(new Termo("alta", 12, 24, 24));
+        Variavel gorjeta = new Variavel(_gorjeta, 0, 24, TipoVariavel.CONSEQUENTE);
+        gorjeta.getTermos().add(new Termo(_baixa, 0, 0, 12));
+        gorjeta.getTermos().add(new Termo(_media, 0, 12, 24));
+        gorjeta.getTermos().add(new Termo(_alta, 12, 24, 24));
         variaveis.add(gorjeta);
 
         List<Regra> regras = new ArrayList<>();
@@ -107,7 +120,7 @@ public class Gorjeta {
         r3.setId(3);
         regras.add(r3);
 
-        Problema problema = new Problema("gorjeta", variaveis, regras);
+        Problema problema = new Problema(_gorjeta, variaveis, regras);
         return problema;
 
     }

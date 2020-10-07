@@ -26,7 +26,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import xavier.ricardo.myfuzzy.dao.ProblemaDao;
 import xavier.ricardo.myfuzzy.dao.VariavelDao;
 import xavier.ricardo.myfuzzy.tipos.Problema;
 import xavier.ricardo.myfuzzy.tipos.Variavel;

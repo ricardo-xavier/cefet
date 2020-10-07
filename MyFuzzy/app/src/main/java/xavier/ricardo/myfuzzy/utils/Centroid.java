@@ -12,9 +12,9 @@ public class Centroid {
 		sb.append("<td>x1</td>\n");
 		sb.append("<td>x2</td>\n");
 		sb.append("<td>y</td>\n");
-		sb.append("<td>momento</td>\n");
+		sb.append("<td>moment</td>\n");
 		sb.append("<td>area</td>\n");
-		sb.append("<td>momento x area</td>\n");
+		sb.append("<td>moment x area</td>\n");
 		sb.append("</tr>\n");
 		double sumMomentArea = 0.;
 		double sumArea = 0.;

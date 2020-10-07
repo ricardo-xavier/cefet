@@ -2,7 +2,6 @@ package xavier.ricardo.myfuzzy.dao;
 
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import xavier.ricardo.myfuzzy.tipos.AntecedenteConsequente;
 import xavier.ricardo.myfuzzy.tipos.Operador;
@@ -22,9 +21,7 @@ public class AntecedenteConsequenteDao {
         if (op != null) {
             contentValues.put("OPERADOR", op == Operador.AND ? "&" : "|");
         }
-        //Log.i("BANCO", "insert regra:" + regra + " " + tipo + " " + seq);
         long newRowId = db.insert("ANTECEDENTES_CONSEQUENTES", null, contentValues);
-        //Log.i("BANCO", "insert newRowId:" + newRowId);
 
     }
 }
