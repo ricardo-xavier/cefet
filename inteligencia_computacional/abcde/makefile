@@ -3,13 +3,13 @@ CC=gcc -g
 
 all: libabc.so
 
-OBJS=seed_growing.o
+OBJS=abc.o
 
 clean:
 	rm -f libabc.so $(OBJS)
 
-seed_growing.o: seed_growing.c
-	$(CC) -fPIC -c seed_growing.c
+abc.o: abc.c
+	$(CC) -fPIC -c abc.c
 
 libabc.so: $(OBJS)
 	$(CC) $(OBJS) -shared -o libabc.so
