@@ -4,6 +4,8 @@ import numpy as np
 import ctypes
 from numpy.ctypeslib import ndpointer
 from matplotlib import pyplot as plt
+import skfuzzy as fuzzy
+from skfuzzy import control as ctrl
 
 class ImageData:
 
@@ -76,20 +78,18 @@ def process(filename):
     # calcula os valores crisp de A, B e C
     abc = np.zeros((3, 1), dtype=np.int32)
     abc_c(im_input_rot, im_contour_rot, im_ellipse_rot, im_input_rot.shape[1], im_input_rot.shape[0], int(center[0]), abc)
-    #print(max(diagonal[0], diagonal[1]))
-    #print(abc[0])
-    #print(abc[0] / max(diagonal[0], diagonal[1]))
-    #print(abc[1])
-    #print(abc[1] / max(diagonal[0], diagonal[1]))
-    #print(abc[2])
 
     height = max(diagonal[0], diagonal[1])
     data = ImageData(filename, abc[0] / height, abc[1] / height, abc[2])
+    images.append(data)
 
     #cv2.imshow(filename, im_input_rot);
     #cv2.imshow("contorno_" + filename, im_contour_rot);
     #cv2.imshow("elipse_" + filename, im_ellipse_rot);
     #cv2.waitKey()
+    return
+
+def minmax():
     return
 
 lib = ctypes.cdll.LoadLibrary("./libabc.so")
@@ -104,12 +104,67 @@ abc_c.argtypes = [
                   ctypes.c_int,                                     # x-center
                   ndpointer(ctypes.c_int32, flags="C_CONTIGUOUS") ] # abc
 
-'''
+images = []
+
+#'''
 for i in range(1, 10):
     for tipo in [ "b", "m" ]:
         name = "images/" + tipo + str(i) + ".jpg"
         process(name)
-'''
-process("images/b1.jpg")
+#'''
+#process("images/b1.jpg")
 #process("images/m3.jpg")
 
+maxA = 0
+minA = 999999
+maxB = 0
+minB = 999999
+maxC = 0
+minC = 999999
+for im in images:
+    maxA = max(maxA, im.a)
+    minA = min(minA, im.a)
+    maxB = max(maxB, im.b)
+    minB = min(minB, im.b)
+    maxC = max(maxC, im.c)
+    minC = min(minC, im.c)
+maxA = math.ceil(maxA)
+minA = math.floor(minA)
+maxB = math.ceil(maxB)
+minB = math.floor(minB)
+maxC = math.ceil(maxC)
+minC = math.floor(minC)
+
+# definicao de antecedentes
+a = ctrl.Antecedent(np.arange(minA, maxA+1, 1), 'a')
+b = ctrl.Antecedent(np.arange(minB, maxB+1, 1), 'b')
+c = ctrl.Antecedent(np.arange(minC, maxC+1, 1), 'c')
+
+# definicao dos termos de A
+f = int((maxA - minA) / 4)
+a['baixa'] = fuzzy.trapmf(a.universe, [minA, minA, minA+f, minA+f*2])
+a['media'] = fuzzy.trimf(a.universe, [minA+f, minA+f*2, minA+f*3])
+a['alta'] = fuzzy.trapmf(a.universe, [minA+f*2, minA+f*3, maxA, maxA])
+a.view()
+fig = plt.gcf()
+fig.canvas.set_window_title('Assimetria')
+
+# definicao dos termos de B
+f = int((maxB - minB) / 4)
+b['baixa'] = fuzzy.trapmf(b.universe, [minB, minB, minB+f, minB+f*2])
+b['media'] = fuzzy.trimf(b.universe, [minB+f, minB+f*2, minB+f*3])
+b['alta'] = fuzzy.trapmf(b.universe, [minB+f*2, minB+f*3, maxB, maxB])
+b.view()
+fig = plt.gcf()
+fig.canvas.set_window_title('Borda')
+
+# definicao dos termos de C
+f = int((maxC - minC) / 4)
+c['baixa'] = fuzzy.trapmf(c.universe, [minC, minC, minC+f, minC+f*2])
+c['media'] = fuzzy.trimf(c.universe, [minC+f, minC+f*2, minC+f*3])
+c['alta'] = fuzzy.trapmf(c.universe, [minC+f*2, minC+f*3, maxC, maxC])
+c.view()
+fig = plt.gcf()
+fig.canvas.set_window_title('Cores')
+
+plt.show()
