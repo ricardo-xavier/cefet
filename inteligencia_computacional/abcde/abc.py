@@ -6,10 +6,12 @@ from numpy.ctypeslib import ndpointer
 from matplotlib import pyplot as plt
 import skfuzzy as fuzzy
 from skfuzzy import control as ctrl
+import os
 
 class ImageData:
 
-    def __init__(self, name, a, b, c, im_input):
+    def __init__(self, tp, name, a, b, c, im_input):
+        self.tp = tp
         self.name = name
         self.a = a
         self.b = b
@@ -22,7 +24,7 @@ class ImageData:
 ######################
 ## Processa as imagens
 ######################
-def process(filename):
+def process(tp, filename):
 
     # carrega a imagem
     im_input = cv2.imread(filename)
@@ -87,7 +89,7 @@ def process(filename):
     abc_c(im_input_rot, im_contour_rot, im_ellipse_rot, im_input_rot.shape[1], im_input_rot.shape[0], int(center[0]), abc)
 
     height = max(diagonal[0], diagonal[1])
-    data = ImageData(filename, abc[0] / height, abc[1] / height, abc[2], im_input)
+    data = ImageData(tp, filename, abc[0] / height, abc[1] / height, abc[2], im_input)
     images.append(data)
 
     #cv2.imshow(filename, im_input_rot);
@@ -161,12 +163,18 @@ centerB = 0
 centerC = 0
 
 # processa as imagens
-#'''
+'''
 for i in range(1, 10):
-    for tipo in [ "b", "m" ]:
-        name = "images/" + tipo + str(i) + ".jpg"
-        process(name)
-#'''
+    for tp in [ "b", "m" ]:
+        name = "images/" + tp + str(i) + ".jpg"
+        process(tp, name)
+'''
+for f in os.listdir("images/benign"):
+    name = "images/benign/" + f
+    process("b", name)
+for f in os.listdir("images/malignant"):
+    name = "images/malignant/" + f
+    process("m", name)
 #process("images/b1.jpg")
 #process("images/m3.jpg")
 
@@ -282,6 +290,7 @@ simulador = ctrl.ControlSystemSimulation(controlador)
 # faz as simulacoes
 false_positives=0
 false_negatives=0
+n=0
 for im in images:
     #im.print()
     simulador.input['Assimetria'] = im.a
@@ -289,18 +298,19 @@ for im in images:
     simulador.input['Cores'] = im.c
     simulador.compute()
     result = simulador.output['Melanoma']
-    if im.name[7] == 'b':
+    if im.tp == "b":
         if result > 50:
             false_positives = false_positives + 1
     else:
         if result < 50:
             false_negatives = false_negatives + 1
-    print(im.name, " ", result, " fp=", false_positives, " fn=", false_negatives)
+    n = n + 1
+    im.print()
+    print(str(n) + " " + str(result), " fp=", str(false_positives), " fn=", str(false_negatives))
     #a.view(sim=simulador)
     #b.view(sim=simulador)
     #c.view(sim=simulador)
-    cv2.imshow(im.name, im.im_input)
-    cv2.waitKey()
+    #cv2.imshow(im.name, im.im_input)
+    #cv2.waitKey()
     #m.view(sim=simulador)
     #plt.show()
-
